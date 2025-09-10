@@ -82,7 +82,6 @@
                           <h3 class="mb-0">Terjual</h3>
                         </div>
                       </div>
-                      </div>
                     </div>
                     <h3 class="text-muted font-weight-normal">{{ $terjualUnits ?? 0 }}</h3>
                   </div>

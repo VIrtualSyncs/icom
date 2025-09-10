@@ -254,192 +254,153 @@
 
 
     <!-- Image Carousel Section -->
-    <section id="gallery" class="py-20 bg-white">
+<section class="py-16 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 fade-in">
-      <h2 class="text-4xl font-bold text-green-primary mb-4"> 
-        Galeri Proyek
+    <div class="text-center mb-12 fade-in">
+      <h2 class="text-3xl font-bold text-green-primary mb-4">
+        Keindahan Pesona Prima 8 Residence
       </h2>
-      <p class="text-xl text-gray-600">
-        Lihat keindahan dan kemewahan hunian Pesona Prima 8 Residence
+      <p class="text-lg text-gray-600">
+        Jelajahi berbagai sudut hunian impian Anda
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @foreach($facilities as $facility)
-        {{-- Gallery Item --}}
+    <div class="relative max-w-4xl mx-auto">
+      <!-- Carousel Container -->
+      <div class="carousel-container overflow-hidden rounded-2xl shadow-2xl">
         <div
-          class="gallery-item rounded-xl overflow-hidden shadow-lg fade-in relative"
-          onclick="openModal('modal{{ $facility->id }}')"
+          class="carousel-track flex transition-transform duration-500 ease-in-out"
+          id="carousel-track"
         >
-          <img
-            src="{{ asset('storage/' . $facility->gambar) }}"
-            alt="{{ $facility->nama }}"
-            class="w-full h-64 object-cover"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
-          <div
-            class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center"
-            style="display: none"
-          >
-            <div class="text-center text-white">
-              <svg
-                class="w-16 h-16 mx-auto mb-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-                />
-              </svg>
-              <p class="font-semibold">{{ $facility->nama }}</p>
-            </div>
-          </div>
-          <div
-            class="absolute inset-0 bg-black bg-opacity-30 flex items-end opacity-0 hover:opacity-100 transition-opacity duration-300"
-          >
-            <div class="text-white p-4 w-full">
-              <p class="font-semibold">{{ $facility->nama }}</p>
-            </div>
-          </div>
-        </div>
+          @foreach ($highlights as $highlight)
+          <!-- Slide -->
+          <div class="carousel-slide w-full flex-shrink-0">
+            <div class="h-96 relative overflow-hidden">
+              <img
+                src="{{ asset('storage/' . $highlight->image) }}"
+                alt="{{ $highlight->title }}"
+                class="w-full h-full object-cover"
+              />
 
-        {{-- Modal untuk facility --}}
-        <div id="modal{{ $facility->id }}" class="modal hidden fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center"
-             onclick="closeModal('modal{{ $facility->id }}')">
-          <div class="bg-white p-8 rounded-xl max-w-2xl mx-4 relative" onclick="event.stopPropagation()">
-            <h3 class="text-2xl font-bold text-green-primary mb-4">
-              {{ $facility->nama }}
-            </h3>
-            <div
-              class="h-64 bg-gradient-to-br from-green-light to-green-secondary rounded-lg flex items-center justify-center mb-4 overflow-hidden"
-            >
-              <img src="{{ asset('storage/' . $facility->gambar) }}"
-                   alt="{{ $facility->nama }}"
-                   class="w-full h-full object-cover"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-              <div style="display:none" class="text-center text-white">
-                <svg
-                  class="w-20 h-20 mx-auto mb-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-                  />
-                </svg>
-                <p class="font-semibold">{{ $facility->nama }}</p>
+              <!-- Overlay -->
+              <div
+                class="absolute inset-0 bg-black bg-opacity-30 flex items-end"
+              >
+                <div class="text-white p-6 w-full">
+                  <h3 class="text-2xl font-bold mb-2">{{ $highlight->title }}</h3>
+                  <p class="text-lg opacity-90">{{ $highlight->description }}</p>
+                </div>
               </div>
             </div>
-            <p class="text-gray-600">
-              {{ $facility->deskripsi }}
-            </p>
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-red-500" onclick="closeModal('modal{{ $facility->id }}')">
-              ✕
-            </button>
           </div>
+          @endforeach
         </div>
-      @endforeach
+      </div>
+
+      <!-- Tombol Prev -->
+      <button
+        class="carousel-btn carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 text-green-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        onclick="prevSlide()"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
+
+      <!-- Tombol Next -->
+      <button
+        class="carousel-btn carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-90 hover:bg-opacity-100 text-green-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        onclick="nextSlide()"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+
+      <!-- Dots Indicator -->
+      <div class="flex justify-center mt-8 space-x-3">
+        @foreach ($highlights as $index => $h)
+          <button
+            class="carousel-dot w-3 h-3 rounded-full {{ $index === 0 ? 'bg-green-primary' : 'bg-gray-300' }} transition-all duration-300"
+            onclick="goToSlide({{ $index }})"
+          ></button>
+        @endforeach
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Script Carousel -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  let currentSlide = 0;
+  const track = document.getElementById("carousel-track");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const dots = document.querySelectorAll(".carousel-dot");
+  const totalSlides = slides.length;
 
+  function updateSlide() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("bg-green-primary", i === currentSlide);
+      dot.classList.toggle("bg-gray-300", i !== currentSlide);
+    });
+  }
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 fade-in">
-          <h2 class="text-4xl font-bold text-green-primary mb-4">
-            Mengapa Memilih Pesona Prima 8?
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Kami menghadirkan konsep hunian yang memadukan kemewahan modern
-            dengan keindahan alam untuk menciptakan lingkungan hidup yang ideal.
-          </p>
-        </div>
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlide();
+  }
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
-            <div
-              class="w-16 h-16 bg-green-light rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <svg
-                class="w-8 h-8 text-green-primary"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-green-primary mb-4 text-center"
-            >
-              Desain Premium
-            </h3>
-            <p class="text-gray-600 text-center">
-              Arsitektur modern minimalis dengan material berkualitas tinggi dan
-              finishing premium untuk kenyamanan maksimal.
-            </p>
-          </div>
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  }
 
-          <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
-            <div
-              class="w-16 h-16 bg-green-light rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <svg
-                class="w-8 h-8 text-green-primary"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-green-primary mb-4 text-center"
-            >
-              Lingkungan Asri
-            </h3>
-            <p class="text-gray-600 text-center">
-              Dikelilingi taman hijau dan area resapan air alami yang
-              menciptakan udara segar dan suasana tenang setiap hari.
-            </p>
-          </div>
+  window.goToSlide = function(n) {
+    currentSlide = n;
+    updateSlide();
+  }
 
-          <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
-            <div
-              class="w-16 h-16 bg-green-light rounded-full flex items-center justify-center mb-6 mx-auto"
-            >
-              <svg
-                class="w-8 h-8 text-green-primary"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3
-              class="text-xl font-semibold text-green-primary mb-4 text-center"
-            >
-              Fasilitas Lengkap
-            </h3>
-            <p class="text-gray-600 text-center">
-              Dilengkapi dengan fasilitas modern seperti taman bermain, jogging
-              track, dan area komunal untuk gaya hidup aktif.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  window.nextSlide = nextSlide;
+  window.prevSlide = prevSlide;
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 bg-white">
+  // Auto slide tiap 5 detik
+  let autoSlide = setInterval(nextSlide, 5000);
+
+  // Reset auto slide kalau user klik tombol/dot
+  document.querySelectorAll(".carousel-btn, .carousel-dot").forEach(el => {
+    el.addEventListener("click", () => {
+      clearInterval(autoSlide);
+      autoSlide = setInterval(nextSlide, 5000);
+    });
+  });
+});
+</script>
+  
+
+<!-- Gallery Section -->
+<section id="gallery" class="py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 fade-in">
       <h2 class="text-4xl font-bold text-green-primary mb-4">
@@ -451,27 +412,23 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @foreach($facilities as $facility)
+      @forelse($facilities as $index => $facility)
         <div
           class="gallery-item rounded-xl overflow-hidden shadow-lg fade-in relative"
           onclick="openModal('modal{{ $facility->id }}')"
         >
-          <img
-            src="{{ asset('storage/' . $facility->gambar) }}"
-            alt="{{ $facility->nama }}"
+          <img 
+            src="{{ asset('storage/' . $facility->gambar) }}" 
+            alt="{{ $facility->nama }}" 
             class="w-full h-64 object-cover"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
+          >
+
           <div
             class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center"
             style="display: none"
           >
             <div class="text-center text-white">
-              <svg
-                class="w-16 h-16 mx-auto mb-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
                 />
@@ -484,13 +441,20 @@
           >
             <div class="text-white p-4 w-full">
               <p class="font-semibold">{{ $facility->nama }}</p>
+              @if($facility->deskripsi)
+              @endif
             </div>
           </div>
         </div>
-      @endforeach
+      @empty
+        <p class="text-center col-span-3 text-gray-500">
+          Belum ada data fasilitas.
+        </p>
+      @endforelse
     </div>
   </div>
 </section>
+
 
 
     <!-- Projects Section -->
@@ -652,11 +616,12 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-12">
-          <div class="fade-in">
+         <div class="fade-in">
             <h3 class="text-2xl font-semibold text-green-primary mb-6">
               Informasi Kontak
             </h3>
             <div class="space-y-6">
+              <!-- Alamat -->
               <div class="flex items-start space-x-4">
                 <div
                   class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
@@ -675,13 +640,18 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-green-primary">Alamat</h4>
-                  <p class="text-gray-600">
+                  <a
+                    href="https://maps.app.goo.gl/NJwqT2buMYe9iv8x8"
+                    target="_blank"
+                    class="text-gray-600 hover:text-green-primary transition-colors"
+                  >
                     Jl. Pahlawan no. A4 1 JAWA BARAT, <br />KAB BANDUNG,
                     Banjaran, Kiangroke
-                  </p>
+                  </a>
                 </div>
               </div>
 
+              <!-- Telepon -->
               <div class="flex items-start space-x-4">
                 <div
                   class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
@@ -698,12 +668,23 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-green-primary">Telepon</h4>
-                  <p class="text-gray-600">
-                    +62 813 131 348771<br />+62 812 3456 7890
-                  </p>
+                  <a
+                    href="tel:+62813131348771"
+                    class="block text-gray-600 hover:text-green-primary transition-colors"
+                  >
+                    +62 813 1313 48771
+                  </a>
+
+                  <a
+                    href="tel:+6281234567890"
+                    class="block text-gray-600 hover:text-green-primary transition-colors"
+                  >
+                    +62 812 3456 7890
+                  </a>
                 </div>
               </div>
 
+              <!-- Email -->
               <div class="flex items-start space-x-4">
                 <div
                   class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
@@ -723,14 +704,22 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-green-primary">Email</h4>
-                  <p class="text-gray-600">
+                  <a
+                    href="mailto:marketing@kreasiprimaland.com?subject=Info%20Pesona%20Prima%208"
+                    class="block text-gray-600 hover:text-green-primary transition-colors"
+                  >
                     marketing@kreasiprimaland.com
-
-                    <br />sales@kreasiprimaland.com
-                  </p>
+                  </a>
+                  <a
+                    href="mailto:sales@kreasiprimaland.com?subject=Info%20Pesona%20Prima%208"
+                    class="block text-gray-600 hover:text-green-primary transition-colors"
+                  >
+                    sales@kreasiprimaland.com
+                  </a>
                 </div>
               </div>
 
+              <!-- Jam Operasional -->
               <div class="flex items-start space-x-4">
                 <div
                   class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
@@ -752,8 +741,8 @@
                     Jam Operasional
                   </h4>
                   <p class="text-gray-600">
-                    Senin - Jumat: 08:00 - 17:00<br />Sabtu - Minggu: 09:00 -
-                    16:00
+                    Senin - Jumat: 08:00 - 17:00 <br />
+                    Sabtu - Minggu: 09:00 - 16:00
                   </p>
                 </div>
               </div>
@@ -1075,7 +1064,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-green-primary text-white py-12">
+<footer class="bg-green-primary text-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-4 gap-8">
           <div>
@@ -1087,17 +1076,83 @@
               <div
                 class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center cursor-pointer hover:bg-green-light transition-colors"
               >
-                <span class="text-sm">f</span>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center hover:bg-green-light transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-facebook-icon lucide-facebook"
+                  >
+                    <path
+                      d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                    />
+                  </svg>
+                </a>
               </div>
               <div
                 class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center cursor-pointer hover:bg-green-light transition-colors"
               >
-                <span class="text-sm">ig</span>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center hover:bg-green-light transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-instagram-icon lucide-instagram"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
+                </a>
               </div>
               <div
                 class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center cursor-pointer hover:bg-green-light transition-colors"
               >
-                <span class="text-sm">wa</span>
+                <a
+                  href="https://www.whatsapp.com"
+                  target="_blank"
+                  class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center hover:bg-green-light transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-message-square-more-icon lucide-message-square-more"
+                  >
+                    <path
+                      d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"
+                    />
+                    <path d="M12 11h.01" />
+                    <path d="M16 11h.01" />
+                    <path d="M8 11h.01" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -1154,9 +1209,28 @@
           <div>
             <h4 class="font-semibold mb-4">Kontak</h4>
             <ul class="space-y-2 text-green-accent">
-              <li>Jl. Pahlawan no. A4 1 Banjaran, KAB BANDUNG</li>
-              <li>+62 813 1313 4877</li>
-              <li>marketing@kreasiprimaland.com</li>
+              <li>
+                <a
+                  href="https://maps.app.goo.gl/DG1xUwQcu4m5AW717"
+                  target="_blank"
+                  class="hover:text-white"
+                >
+                  Jl. Pahlawan no. A4 1 Banjaran, Kab. Bandung
+                </a>
+              </li>
+              <li>
+                <a href="tel:+6281313134877" class="hover:text-white">
+                  +62 813 1313 4877
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:marketing@kreasiprimaland.com"
+                  class="hover:text-white"
+                >
+                  marketing@kreasiprimaland.com
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -1169,176 +1243,28 @@
       </div>
     </footer>
 
-    <!-- Modals for Gallery -->
-    <div id="modal1" class="modal" onclick="closeModal('modal1')">
-      <div class="bg-white p-8 rounded-xl max-w-2xl mx-4">
-        <h3 class="text-2xl font-bold text-green-primary mb-4">
-          Tampak Depan Rumah
-        </h3>
-        <div
-          class="h-64 bg-gradient-to-br from-green-light to-green-secondary rounded-lg flex items-center justify-center mb-4"
-        >
-          <div class="text-center text-white">
-            <svg
-              class="w-20 h-20 mx-auto mb-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-              />
-            </svg>
-            <p class="font-semibold">Desain Fasad Modern</p>
-          </div>
-        </div>
-        <p class="text-gray-600">
-          Tampak depan rumah dengan desain modern minimalis yang elegan,
-          dilengkapi dengan taman depan yang asri dan carport yang luas.
-        </p>
-      </div>
-    </div>
+@foreach($facilities as $facility)
+  <div id="modal{{ $facility->id }}" 
+       class="modal hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+       onclick="closeModal('modal{{ $facility->id }}')">
 
-    <div id="modal2" class="modal" onclick="closeModal('modal2')">
-      <div class="bg-white p-8 rounded-xl max-w-2xl mx-4">
-        <h3 class="text-2xl font-bold text-green-primary mb-4">
-          Interior Living Room
-        </h3>
-        <div
-          class="h-64 bg-gradient-to-br from-green-secondary to-green-primary rounded-lg flex items-center justify-center mb-4"
-        >
-          <div class="text-center text-white">
-            <svg
-              class="w-20 h-20 mx-auto mb-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
-              />
-            </svg>
-            <p class="font-semibold">Ruang Keluarga Premium</p>
-          </div>
-        </div>
-        <p class="text-gray-600">
-          Ruang keluarga yang luas dan nyaman dengan pencahayaan alami yang
-          optimal, dilengkapi dengan furniture berkualitas tinggi.
-        </p>
-      </div>
-    </div>
+    <div class="bg-white p-8 rounded-xl max-w-3xl w-full mx-4 relative"
+         onclick="event.stopPropagation()">
 
-    <div id="modal3" class="modal" onclick="closeModal('modal3')">
-      <div class="bg-white p-8 rounded-xl max-w-2xl mx-4">
-        <h3 class="text-2xl font-bold text-green-primary mb-4">
-          Master Bedroom
-        </h3>
-        <div
-          class="h-64 bg-gradient-to-br from-green-primary to-green-light rounded-lg flex items-center justify-center mb-4"
-        >
-          <div class="text-center text-white">
-            <svg
-              class="w-20 h-20 mx-auto mb-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-              />
-            </svg>
-            <p class="font-semibold">Kamar Tidur Utama</p>
-          </div>
-        </div>
-        <p class="text-gray-600">
-          Kamar tidur utama yang luas dengan walk-in closet dan kamar mandi
-          en-suite, memberikan privasi dan kenyamanan maksimal.
-        </p>
-      </div>
-    </div>
+      <button class="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl font-bold" 
+              onclick="closeModal('modal{{ $facility->id }}')">✖</button>
 
-    <div id="modal4" class="modal" onclick="closeModal('modal4')">
-      <div class="bg-white p-8 rounded-xl max-w-2xl mx-4">
-        <h3 class="text-2xl font-bold text-green-primary mb-4">
-          Kitchen & Dining
-        </h3>
-        <div
-          class="h-64 bg-gradient-to-br from-green-light to-green-secondary rounded-lg flex items-center justify-center mb-4"
-        >
-          <div class="text-center text-white">
-            <svg
-              class="w-20 h-20 mx-auto mb-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
-              />
-            </svg>
-            <p class="font-semibold">Dapur Modern</p>
-          </div>
-        </div>
-        <p class="text-gray-600">
-          Dapur modern dengan kitchen set premium dan ruang makan yang
-          terintegrasi, cocok untuk aktivitas memasak dan berkumpul keluarga.
-        </p>
-      </div>
-    </div>
+      <h3 class="text-2xl font-bold text-green-primary mb-4">{{ $facility->nama }}</h3>
 
-    <div id="modal5" class="modal" onclick="closeModal('modal5')">
-      <div class="bg-white p-8 rounded-xl max-w-2xl mx-4">
-        <h3 class="text-2xl font-bold text-green-primary mb-4">
-          Taman & Landscape
-        </h3>
-        <div
-          class="h-64 bg-gradient-to-br from-green-secondary to-green-primary rounded-lg flex items-center justify-center mb-4"
-        >
-          <div class="text-center text-white">
-            <svg
-              class="w-20 h-20 mx-auto mb-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.559-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.559.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <p class="font-semibold">Landscape Hijau</p>
-          </div>
-        </div>
-        <p class="text-gray-600">
-          Taman belakang yang asri dengan landscape design profesional,
-          menciptakan suasana alami dan udara segar di sekitar rumah.
-        </p>
-      </div>
+      <img src="{{ asset('storage/' . $facility->gambar) }}" 
+     alt="{{ $facility->nama }}" 
+     class="w-full h-96 object-cover rounded-lg mx-auto">
+      <p class="text-gray-600">{{ $facility->deskripsi }}</p>
     </div>
+  </div>
+@endforeach
 
-    <div id="modal6" class="modal" onclick="closeModal('modal6')">
-      <div class="bg-white p-8 rounded-xl max-w-2xl mx-4">
-        <h3 class="text-2xl font-bold text-green-primary mb-4">
-          Fasilitas Umum
-        </h3>
-        <div
-          class="h-64 bg-gradient-to-br from-green-primary to-green-light rounded-lg flex items-center justify-center mb-4"
-        >
-          <div class="text-center text-white">
-            <svg
-              class="w-20 h-20 mx-auto mb-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-              />
-            </svg>
-            <p class="font-semibold">Fasilitas Lengkap</p>
-          </div>
-        </div>
-        <p class="text-gray-600">
-          Fasilitas umum lengkap termasuk taman bermain anak, jogging track,
-          gazebo, dan area parkir yang luas untuk kenyamanan penghuni.
-        </p>
-      </div>
-    </div>
+
 
     <script>
       // Mobile menu toggle
