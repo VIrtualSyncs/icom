@@ -462,10 +462,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16 fade-in">
           <h2 class="text-4xl font-bold text-green-primary mb-4">
-            Pilihan Tipe Rumah
+            Tipe Rumah
           </h2>
           <p class="text-xl text-gray-600">
-            Berbagai pilihan tipe rumah sesuai kebutuhan keluarga Anda
+            Pilihan tipe rumah sesuai kebutuhan keluarga Anda
           </p>
         </div>
 
@@ -1192,18 +1192,13 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
           <div>
-            <h4 class="font-semibold mb-4">Produk Kami</h4>
-            <ul class="space-y-2">
-              <li>
-                <span class="text-green-accent">Pesona Prima 8 Premium</span>
-              </li>
-              <li>
-                <span class="text-green-accent">Villa Modern Eksklusif</span>
-              </li>
-              <li>
-                <span class="text-green-accent">Hunian Ramah Lingkungan</span>
-              </li>
-            </ul>
+            <h4 class="font-semibold mb-4">Keunggulan Unit</h4>
+<ul class="space-y-2">
+  <li><span class="text-green-accent">Desain Modern Minimalis</span></li>
+  <li><span class="text-green-accent">Lingkungan Asri dan Nyaman</span></li>
+  <li><span class="text-green-accent">Akses Mudah ke Fasilitas Kota</span></li>
+</ul>
+
           </div>
 
           <div>
@@ -1350,7 +1345,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // WhatsApp function
       function openWhatsApp() {
-        const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp yang sebenarnya
+        const phoneNumber = "628979521900"; // Ganti dengan nomor WhatsApp yang sebenarnya
         const message = encodeURIComponent(
           "Halo! Saya tertarik dengan GreenVilla Premium. Bisa minta informasi lebih lanjut?"
         );

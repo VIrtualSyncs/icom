@@ -9,90 +9,88 @@ use Illuminate\Support\Facades\Storage;
 
 class HeroesController extends Controller
 {
-    // List semua heroes
-    public function index()
-    {
-        $heroes = heroes::latest()->paginate(10);
-        return view('admin.heroes.index', compact('heroes'));
-    }
-
-    // Form tambah hero baru
+    /**
+     * Form tambah hero baru
+     */
     public function create()
     {
         return view('admin.heroes.create');
     }
 
-    // Simpan hero baru
+    /**
+     * Simpan hero baru
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama'           => 'required|string|max:255',
             'deskripsi_hero' => 'required|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'gambar'         => 'required|image|mimes:svg,webp,png|max:2048',
         ]);
 
-        $gambarPath = null;
-        if ($request->hasFile('gambar')) {
-            $gambarPath = $request->file('gambar')->store('heroes', 'public');
-        }
+        // simpan gambar
+        $gambarPath = $request->file('gambar')->store('heroes', 'public');
 
-        heroes::create([
-            'nama' => $request->nama,
+        // simpan data ke database
+        $hero = heroes::create([
+            'nama'           => $request->nama,
             'deskripsi_hero' => $request->deskripsi_hero,
-            'gambar' => $gambarPath,
+            'gambar'         => $gambarPath,
         ]);
 
-        return redirect()->route('heroes.index')->with('success', 'Hero berhasil ditambahkan.');
+        // setelah create, redirect ke halaman detail hero (show)
+        return redirect()
+            ->route('heroes.show', $hero) // <<=== PARAMETER dikirim
+            ->with('success', 'Hero berhasil ditambahkan.');
     }
 
-    // Detail hero
+    /**
+     * Detail hero
+     */
     public function show(heroes $hero)
     {
         return view('admin.heroes.show', compact('hero'));
     }
 
-    // Form edit hero
+    /**
+     * Form edit hero
+     */
     public function edit(heroes $hero)
     {
         return view('admin.heroes.edit', compact('hero'));
     }
 
-    // Update hero
+    /**
+     * Update hero
+     */
     public function update(Request $request, heroes $hero)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama'           => 'required|string|max:255',
             'deskripsi_hero' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar'         => 'nullable|image|mimes:svg,webp,png|max:2048',
         ]);
 
         $data = [
-            'nama' => $request->nama,
+            'nama'           => $request->nama,
             'deskripsi_hero' => $request->deskripsi_hero,
         ];
 
+        // jika upload gambar baru
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
+            // hapus gambar lama jika ada
             if ($hero->gambar && Storage::disk('public')->exists($hero->gambar)) {
                 Storage::disk('public')->delete($hero->gambar);
             }
             $data['gambar'] = $request->file('gambar')->store('heroes', 'public');
         }
 
+        // update database
         $hero->update($data);
 
-        return redirect()->route('heroes.index')->with('success', 'Hero berhasil diperbarui.');
-    }
-
-    // Hapus hero
-    public function destroy(heroes $hero)
-    {
-        // Hapus gambar dari storage
-        if ($hero->gambar && Storage::disk('public')->exists($hero->gambar)) {
-            Storage::disk('public')->delete($hero->gambar);
-        }
-
-        $hero->delete();
-        return redirect()->route('heroes.index')->with('success', 'Hero berhasil dihapus.');
+        // redirect ke halaman detail hero
+        return redirect()
+            ->route('heroes.show', $hero) // <<=== PARAMETER dikirim
+            ->with('success', 'Hero berhasil diperbarui.');
     }
 }

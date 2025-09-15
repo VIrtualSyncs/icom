@@ -5,29 +5,28 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="card-title">Kelola Highlights</h4>
+                <h4 class="card-title">Manage highlights</h4>
                 <a href="{{ route('highlights.create') }}" class="btn btn-primary">
-                    <i class="mdi mdi-plus"></i> Tambah Highlight
+                    <i class="mdi mdi-plus"></i> add Highlights
                 </a>
             </div>
-            <p class="card-description">Daftar semua highlights yang tersedia</p>
 
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Gambar</th>
-                            <th>Judul</th>
-                            <th>Deskripsi</th>
-                            <th>Tanggal Dibuat</th>
-                            <th>Aksi</th>
+                            <th>No</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>description</th>
+                            <th>date created</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($highlights as $highlight)
                         <tr>
-                            <td>{{ $highlight->id }}</td>
+                            <td>{{ $highlights->firstItem() + $loop->index }}</td>
                             <td>
                                 @if($highlight->image)
                                     <img src="{{ asset('storage/' . $highlight->image) }}" alt="{{ $highlight->title }}" class="img-fluid" style="max-width: 80px; max-height: 60px;">
@@ -55,10 +54,6 @@
                         @endforelse
                     </tbody>
                 </table>
-                 <div class="template-demo mt-2">
-                <a href="{{ route('highlights.create') }}" class="btn btn-outline-primary btn-icon-text">
-                <i class="mdi mdi-file-check btn-icon-prepend" ></i> Add </a>
-            </div>
             </div>
             {{ $highlights->links() }}
         </div>

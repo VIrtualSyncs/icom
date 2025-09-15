@@ -29,64 +29,42 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">Total Unit</h3>
-                          <p class="text-success ml-2 mb-0 font-weight-medium"></p>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 class="text-muted font-weight-normal">{{ $totalUnits ?? 0 }}</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h2 class="mb-0">Tersedia</h2>
-                          <p class="text-success ml-2 mb-0 font-weight-medium"></p>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 class="text-muted font-weight-normal">{{ $tersediaUnits ?? 0 }}</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">Pending</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 class="text-muted font-weight-normal">{{ $bookingUnits ?? 0 }}</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">Terjual</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 class="text-muted font-weight-normal">{{ $terjualUnits ?? 0 }}</h3>
-                  </div>
-                </div>
-              </div>
+    <div class="col-xl-6 col-sm-6 grid-margin stretch-card">
+        <div class="card" style="min-height:250px">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <h3 class="mb-2 fs-2">Total Units</h3>
+                <h3 class="text-muted font-weight-normal fs-1">{{ $totalUnits ?? 0 }}</h3>
             </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 grid-margin stretch-card">
+        <div class="card" style="min-height:250px">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <h3 class="mb-2 fs-2">Available</h3>
+                <h3 class="text-muted font-weight-normal fs-1">{{ $tersediaUnits ?? 0 }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 grid-margin stretch-card">
+        <div class="card" style="min-height:250px">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <h3 class="mb-2 fs-2">Pending</h3>
+                <h3 class="text-muted font-weight-normal fs-1">{{ $bookingUnits ?? 0 }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-sm-6 grid-margin stretch-card">
+        <div class="card" style="min-height:250px">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                <h3 class="mb-2 fs-2">Sold</h3>
+                <h3 class="text-muted font-weight-normal fs-1">{{ $terjualUnits ?? 0 }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection

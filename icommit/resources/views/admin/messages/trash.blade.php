@@ -5,20 +5,19 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Sampah - Pesan Terhapus</h4>
-            <p class="card-description">Pesan yang telah dihapus sementara</p>
+            <h4 class="card-title">Trash - Deleted Messages</h4>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Nama</th>
+                            <th>No</th>
+                            <th>Name</th>
                             <th>Email</th>
-                            <th>Telepon</th>
-                            <th>Kebutuhan</th>
-                            <th>Pesan</th>
-                            <th>Dihapus pada</th>
-                            <th>Aksi</th>
+                            <th>Phone number</th>
+                            <th>Service</th>
+                            <th>message</th>
+                            <th>Deleted on</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +45,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="8" class="text-center">Sampah kosong</td>
+                            <td colspan="8" class="text-center">empty trash</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -54,7 +53,7 @@
             </div>
             {{ $messages->links() }}
             <div class="mt-3">
-                <a href="{{ route('messages.index') }}" class="btn btn-secondary">Kembali ke Kotak Pesan</a>
+                <a href="{{ route('messages.index') }}" class="btn btn-secondary">Return to Mailbox</a>
             </div>
         </div>
     </div>

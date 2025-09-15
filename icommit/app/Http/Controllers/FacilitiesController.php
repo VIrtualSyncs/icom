@@ -28,7 +28,7 @@ class FacilitiesController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'required|image|mimes:svg,webp,png|max:2048',
         ]);
 
         $imagePath = null;
@@ -63,7 +63,7 @@ class FacilitiesController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:svg,webp,png|max:2048',
         ]);
 
         $data = [

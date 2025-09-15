@@ -9,7 +9,7 @@ use App\Http\Controllers\HighlightController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\usercontroller;
 
-Route::get('/', [DashboardController::class, 'master'])->name('master')->middleware('auth');
+// Route::get('/', [DashboardController::class, 'master'])->name('master')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'viewdata'])->name('viewdata')->middleware('auth');
 
 // Heroes routes
@@ -45,4 +45,4 @@ Route::get('/admin', function () {
 })->middleware('auth'); // hanya bisa diakses kalau login
 
 //user
-Route::get('/user', [usercontroller::class, 'index_user'])->name('index.user');
+Route::get('/', [usercontroller::class, 'index_user'])->name('index.user');
