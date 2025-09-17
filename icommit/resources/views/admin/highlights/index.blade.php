@@ -38,18 +38,18 @@
                             <td>{{ Str::limit($highlight->description, 50) }}</td>
                             <td>{{ $highlight->created_at ? $highlight->created_at->format('d M Y') : '-' }}</td>
                             <td>
-                                <a href="{{ route('highlights.show', $highlight) }}" class="btn btn-sm btn-info">Lihat</a>
+                                <a href="{{ route('highlights.show', $highlight) }}" class="btn btn-sm btn-info">Details</a>
                                 <a href="{{ route('highlights.edit', $highlight) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <form action="{{ route('highlights.destroy', $highlight) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus highlight ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this highlight?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="6" class="text-center">Belum ada highlight</td>
+                            <td colspan="6" class="text-center">There are no highlights yet</td>
                         </tr>
                         @endforelse
                     </tbody>

@@ -24,7 +24,7 @@
                             <th>Service</th>
                             <th>message</th>
                             <th>Date</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -8,6 +8,7 @@ use App\Http\Controllers\HeroesController;
 use App\Http\Controllers\HighlightController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\usercontroller;
+use App\Http\Controllers\HouseTypeController;
 
 // Route::get('/', [DashboardController::class, 'master'])->name('master')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'viewdata'])->name('viewdata')->middleware('auth');
@@ -46,3 +47,7 @@ Route::get('/admin', function () {
 
 //user
 Route::get('/', [usercontroller::class, 'index_user'])->name('index.user');
+
+
+// house type
+Route::resource('house-types', HouseTypeController::class)->middleware('auth');

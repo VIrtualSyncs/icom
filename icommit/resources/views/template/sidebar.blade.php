@@ -17,6 +17,14 @@
                 </div>
               </div>
             </div>
+
+                    <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="btn btn-outline-danger btn-sm"
+                  style="padding:.25rem .5rem!important; font-size:.85rem!important;">
+            Logout
+          </button>
+        </form>
           </li>
           <li class="nav-item nav-category">
             <span class="nav-link">Navigation</span>
@@ -67,6 +75,14 @@
                 <i class="mdi mdi-home"></i>
               </span>
               <span class="menu-title">Units</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('house-types.index') }}">
+              <span class="menu-icon">
+                <i class="mdi mdi-office-building"></i>
+              </span>
+              <span class="menu-title">House Types</span>
             </a>
           </li>
             <div class="collapse" id="auth">

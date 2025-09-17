@@ -73,7 +73,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="card-title">Daftar Unit Rumah</h4>
+            <h4 class="card-title">List of House Unit</h4>
             <a href="{{ route('units.create') }}" class="btn btn-primary">
               <i class="mdi mdi-plus"></i> add units
             </a>
@@ -91,12 +91,12 @@
                 <tr>
                   <th>No</th>
                   <th>Type</th>
-                  <th>Luas Tanah</th>
-                  <th>Luas Bangunan</th>
-                  <th>Kamar Tidur</th>
-                  <th>Kamar Mandi</th>
+                  <th>Land Area</th>
+                  <th>Building Area</th>
+                  <th>Bedroom</th>
+                  <th>Bathroom</th>
                   <th>Status</th>
-                  <th>Aksi</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -127,7 +127,7 @@
                       <form action="{{ route('units.destroy', $unit) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus unit ini?')">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure want to delete it?')">
                           <i class="mdi mdi-delete"></i>
                         </button>
                       </form>
@@ -135,7 +135,7 @@
                   </tr>
                 @empty
                   <tr>
-                    <td colspan="8" class="text-center">Belum ada data unit rumah</td>
+                    <td colspan="8" class="text-center">No housing unit data yet</td>
                   </tr>
                 @endforelse
               </tbody>

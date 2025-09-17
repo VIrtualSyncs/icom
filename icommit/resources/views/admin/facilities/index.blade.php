@@ -5,9 +5,9 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="card-title">facilities management</h4>
+                <h4 class="card-title">Facilities Management</h4>
                 <a href="{{ route('facilities.create') }}" class="btn btn-primary">
-                    <i class="mdi mdi-plus"></i> Add Facility
+                    <i class="mdi mdi-plus"></i> Add Facilities
                 </a>
             </div>
 
@@ -15,12 +15,12 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Gambar</th>
-                            <th>Nama</th>
-                            <th>Deskripsi</th>
-                            <th>Tanggal Dibuat</th>
-                            <th>Aksi</th>
+                            <th>No</th>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Date Created</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                                 <form action="{{ route('facilities.destroy', $facility) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus facility ini?')">Delete</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this facility?')">Delete</button>
                                 </form>
                             </td>
                         </tr>

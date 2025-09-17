@@ -469,137 +469,171 @@ document.addEventListener("DOMContentLoaded", () => {
           </p>
         </div>
 
-        <div class="max-w-2xl mx-auto">
-          <!-- Single House Type -->
-          <div
-            class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in"
-          >
-            <div class="h-64 relative overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="GreenVilla Premium - Villa Modern Eksklusif"
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div
-                class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center"
-                style="display: none"
-              >
+        <div class="max-w-6xl mx-auto">
+    <!-- House Types Grid -->
+    @forelse($houseTypes as $houseType)
+    <div
+        class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in mb-8"
+    >
+        <div class="h-64 relative overflow-hidden">
+            @if($houseType->image)
+                <img
+                    src="{{ asset('storage/' . $houseType->image) }}"
+                    alt="{{ $houseType->name }}"
+                    class="w-full h-full object-cover"
+                />
+            @else
+                <div class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <svg class="w-24 h-24 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                        </svg>
+                        <p class="text-3xl font-bold">{{ $houseType->name }}</p>
+                    </div>
+                </div>
+            @endif
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                 <div class="text-center text-white">
-                  <svg
-                    class="w-24 h-24 mx-auto mb-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-                    />
-                  </svg>
-                  <p class="text-3xl font-bold">GreenVilla Premium</p>
+                    <p class="text-3xl font-bold">{{ $houseType->name }}</p>
                 </div>
-              </div>
-              <div
-                class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center"
-              >
-                <div class="text-center text-white">
-                  <p class="text-3xl font-bold">Pesona Prima 8 Premium</p>
-                </div>
-              </div>
             </div>
-            <div class="p-8">
-              <h3
-                class="text-2xl font-semibold text-green-primary mb-4 text-center"
-              >
-                Villa Modern Eksklusif
-              </h3>
-              <div class="grid grid-cols-2 gap-4 mb-6">
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Luas Tanah</p>
-                  <p class="text-xl font-bold text-green-primary">60 m²</p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Luas Bangunan</p>
-                  <p class="text-xl font-bold text-green-primary">20 m²</p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Kamar Tidur</p>
-                  <p class="text-xl font-bold text-green-primary">2</p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Kamar Mandi</p>
-                  <p class="text-xl font-bold text-green-primary">1</p>
-                </div>
-              </div>
-
-              <div class="mb-6">
-                <h4 class="font-semibold text-green-primary mb-3">
-                  Fasilitas Premium:
-                </h4>
-                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                  <div class="flex items-center">
-                    <span
-                      class="w-2 h-2 bg-green-primary rounded-full mr-2"
-                    ></span>
-                    Kitchen Set Premium
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="w-2 h-2 bg-green-primary rounded-full mr-2"
-                    ></span>
-                    Carport 2 Mobil
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="w-2 h-2 bg-green-primary rounded-full mr-2"
-                    ></span>
-                    Taman Depan & Belakang
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="w-2 h-2 bg-green-primary rounded-full mr-2"
-                    ></span>
-                    Water Heater
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="w-2 h-2 bg-green-primary rounded-full mr-2"
-                    ></span>
-                    Listrik 1300 Watt
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="w-2 h-2 bg-green-primary rounded-full mr-2"
-                    ></span>
-                    Security 24 Jam
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-center mb-6">
-                <p class="text-3xl font-bold text-green-primary">416 Juta</p>
-                <p class="text-sm text-gray-500">Harga mulai dari</p>
-                <p class="text-xs text-green-secondary mt-1">
-                  *Cicilan mulai 3,5 juta/bulan
-                </p>
-              </div>
-
-              <div class="flex gap-4">
-                <button
-                  onclick="showInterest('GreenVilla Premium')"
-                  class="flex-1 bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-colors"
-                >
-                  Konsultasi Gratis
-                </button>
-                <button
-                  onclick="openWhatsApp()"
-                  class="flex-1 bg-green-accent text-green-primary py-3 px-6 rounded-lg font-semibold hover:bg-green-light transition-colors"
-                >
-                  Chat WhatsApp
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
+
+        <div class="p-8">
+            <h3 class="text-2xl font-semibold text-green-primary mb-4 text-center">
+                {{ $houseType->name }}
+            </h3>
+
+            @if($houseType->description)
+                <p class="text-gray-600 text-center mb-6">
+                    {{ Str::limit($houseType->description, 150) }}
+                </p>
+            @endif
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-1">Luas Tanah</p>
+                    <p class="text-xl font-bold text-green-primary">{{ $houseType->land_area }} m²</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-1">Luas Bangunan</p>
+                    <p class="text-xl font-bold text-green-primary">{{ $houseType->building_area }} m²</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-1">Kamar Tidur</p>
+                    <p class="text-xl font-bold text-green-primary">{{ $houseType->bedrooms }}</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                    <p class="text-sm text-gray-600 mb-1">Kamar Mandi</p>
+                    <p class="text-xl font-bold text-green-primary">{{ $houseType->bathrooms }}</p>
+                </div>
+            </div>
+
+            @if($houseType->facilities && count($houseType->facilities) > 0)
+            <div class="mb-6">
+                <h4 class="font-semibold text-green-primary mb-3">Fasilitas:</h4>
+                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                    @foreach($houseType->facilities as $facility)
+                        <div class="flex items-center">
+                            <span class="w-2 h-2 bg-green-primary rounded-full mr-2"></span>
+                            {{ $facility }}
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
+            <div class="text-center mb-6">
+                <p class="text-sm text-gray-500">Harga mulai dari</p>
+                <p class="text-3xl font-bold text-green-primary">
+                    Rp {{ number_format($houseType->price, 0, ',', '.') }} Juta
+                </p>
+                @if($houseType->installment_note)
+                    <p class="text-xs text-green-secondary mt-1">{{ $houseType->installment_note }}</p>
+                    <button
+                  onclick="document.getElementById('cicilanModal').classList.remove('hidden')"
+                  class="text-[11px] text-gray-600 bg-gray-100 px-3 py-1 rounded mt-3 hover:text-green-primary hover:bg-gray-200 transition"
+                >
+                  📊 Lihat Detail Harga & Simulasi Cicilan
+                </button>
+              </div>
+
+              <!-- Modal Cicilan -->
+              <!-- Modal Cicilan -->
+              <div
+                id="cicilanModal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+              >
+                <div
+                  class="bg-white w-[90%] max-w-md rounded-lg shadow-lg p-6 text-sm"
+                >
+                  <h3 class="text-lg font-bold text-green-primary mb-3">
+                    Detail Harga & Cicilan
+                  </h3>
+
+                  <p class="mb-2">
+                    <span class="font-semibold">Harga Rumah:</span> Rp
+                    395.000.000
+                  </p>
+                  <p class="mb-4">
+                    <span class="font-semibold">Uang Muka (DP):</span> Rp
+                    50.000.000
+                  </p>
+
+                  <h4 class="font-semibold mb-2">Simulasi Cicilan:</h4>
+                  <ul class="list-disc pl-5 text-gray-600 mb-4">
+                    <li>Tenor 10 Tahun: Rp 3,9 Juta/bulan</li>
+                    <li>Tenor 15 Tahun: Rp 2,7 Juta/bulan</li>
+                    <li>Tenor 20 Tahun: Rp 2,0 Juta/bulan</li>
+                  </ul>
+
+                  <p class="text-xs text-gray-400 italic mb-4">
+                    *Syarat & Ketentuan berlaku (harga dapat berubah
+                    sewaktu-waktu)
+                  </p>
+
+                  <button
+                    onclick="document.getElementById('cicilanModal').classList.add('hidden')"
+                    class="bg-green-primary text-white px-4 py-2 rounded-lg hover:bg-green-secondary transition w-full"
+                  >
+                    Tutup
+                  </button>
+                </div>
+              </div>
+                @endif
+            </div>
+
+            <!-- === Tombol di tengah === -->
+            <div class="flex justify-center gap-4">
+                <button
+                    onclick="showInterest('{{ $houseType->name }}')"
+                    class="bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-colors"
+                >
+                    Konsultasi Gratis
+                </button>
+                <button
+                    onclick="openWhatsApp()"
+                    class="bg-green-accent text-green-primary py-3 px-6 rounded-lg font-semibold hover:bg-green-light transition-colors"
+                >
+                    Chat WhatsApp
+                </button>
+            </div>
+            <!-- ======================== -->
+        </div>
+    </div>
+    @empty
+    <div class="text-center py-12">
+        <div class="text-gray-500">
+            <svg class="w-24 h-24 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+            </svg>
+            <p class="text-xl font-semibold">Belum ada tipe rumah tersedia</p>
+            <p class="text-gray-400 mt-2">Silakan hubungi kami untuk informasi lebih lanjut</p>
+        </div>
+    </div>
+    @endforelse
+</div>
+
       </div>
     </section>
 
@@ -1103,7 +1137,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center cursor-pointer hover:bg-green-light transition-colors"
               >
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/kreasiland.bandung?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   class="w-8 h-8 bg-green-secondary rounded-full flex items-center justify-center hover:bg-green-light transition-colors"
                 >
@@ -1214,16 +1248,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
               </li>
               <li>
-                <a href="tel:+6281313134877" class="hover:text-white">
-                  +62 813 1313 4877
+                <a href="tel:+62813-1313-4877" class="hover:text-white">
+                  +62813-1313-4877
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:marketing@kreasiprimaland.com"
+                  href="mailto:kreasiprimaland.com"
                   class="hover:text-white"
                 >
-                  marketing@kreasiprimaland.com
+                  kreasiprimaland.com
                 </a>
               </li>
             </ul>
@@ -1345,7 +1379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // WhatsApp function
       function openWhatsApp() {
-        const phoneNumber = "628979521900"; // Ganti dengan nomor WhatsApp yang sebenarnya
+        const phoneNumber = "6281313134877"; // Ganti dengan nomor WhatsApp yang sebenarnya
         const message = encodeURIComponent(
           "Halo! Saya tertarik dengan GreenVilla Premium. Bisa minta informasi lebih lanjut?"
         );

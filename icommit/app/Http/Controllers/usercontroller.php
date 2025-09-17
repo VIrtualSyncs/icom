@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Highlight;
 use App\Models\heroes;
 use App\Models\Facilities;
+use App\Models\HouseType;
 class usercontroller extends Controller
 
 {
@@ -14,8 +15,9 @@ class usercontroller extends Controller
         $heroes = heroes::all();
         $facilities  = facilities::all();
         $highlights = Highlight::all();
-        
-        return view('user.index', compact('heroes', 'facilities', 'highlights'));
+        $houseTypes = HouseType::all();
+
+        return view('user.index', compact('heroes', 'facilities', 'highlights', 'houseTypes'));
     }
 
 
