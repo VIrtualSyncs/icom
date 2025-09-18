@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenVilla Residence - Hunian Elegan & Modern</title>
+    <title>Pesona Prima 8 - Hunian Elegan & Modern</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -93,10 +93,16 @@
         <div class="flex justify-between items-center h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <h1 class="text-2xl font-bold text-green-primary">
-                Pesona Prima 8 BANJARAN
-              </h1>
-            </div>
+  <a href="#home">
+    <img 
+      src="{{ asset('images/logo_pesona_prima.png') }}" 
+      alt="Logo Pesona Prima 8 Banjaran" 
+      class="h-12 w-auto"
+    >
+  </a>
+</div>
+
+
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-8">
@@ -110,15 +116,20 @@
                 class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
                 >Tentang</a
               >
+              <a href="#denah"
+   class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">
+   Denah
+</a>
+
               <a
                 href="#gallery"
                 class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
-                >Galeri</a
+                >Fasilitas</a
               >
               <a
                 href="#projects"
                 class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
-                >Proyek</a
+                >Tipe unit</a
               >
               <a
                 href="#contact"
@@ -160,15 +171,20 @@
             class="block px-3 py-2 text-gray-700 hover:text-green-primary"
             >Tentang</a
           >
+          <a href="#denah"
+          class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">
+             Denah
+          </a>
+
           <a
             href="#gallery"
             class="block px-3 py-2 text-gray-700 hover:text-green-primary"
-            >Galeri</a
+            >Fasilitas</a
           >
           <a
             href="#projects"
             class="block px-3 py-2 text-gray-700 hover:text-green-primary"
-            >Proyek</a
+            >Tipe unit</a
           >
           <a
             href="#contact"
@@ -251,6 +267,86 @@
         </div>
     </div>
 </section>
+
+<!-- about -->
+<section id="about" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-green-primary mb-4">
+        Mengapa Memilih Pesona Prima 8?
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Kami menghadirkan konsep hunian yang memadukan kemewahan modern
+        dengan keindahan alam untuk menciptakan lingkungan hidup yang ideal.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      @foreach($kebutuhan as $item)
+      <div class="bg-white p-8 rounded-xl shadow-lg card-hover fade-in">
+      <div class="w-16 h-16 bg-green-light rounded-full flex items-center justify-center mb-6 mx-auto">
+          @if(str_contains($item->icon, 'http') || str_contains($item->icon, '.svg') || str_contains($item->icon, '.png') || str_contains($item->icon, '.webp'))
+            <img src="{{ asset('storage/' . $item->icon) }}" alt="{{ $item->title }}" class="w-10 h-10" />
+          @else
+            {!! $item->icon !!}
+          @endif
+        </div>
+        <h3 class="text-xl font-semibold text-green-primary mb-4 text-center">
+          {{ $item->title }}
+        </h3>
+        <p class="text-gray-600 text-center">
+          {{ $item->description }}
+        </p>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Denah Section -->
+<<section id="denah" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-green-primary mb-4">Denah Lokasi</h2>
+      <p class="text-xl text-gray-600">Lihat denah perumahan kami secara detail.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8">
+      @forelse($denah as $item)
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in w-full md:w-3/4 lg:w-2/3">
+          @if($item->image)
+            <img 
+              src="{{ asset('storage/' . $item->image) }}" 
+              alt="{{ $item->title }}" 
+              class="w-full h-auto object-cover rounded-xl"
+            >
+          @else
+            <div class="w-full bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center rounded-xl h-96">
+              <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          @endif
+        </div>
+      @empty
+        <div class="w-full text-center py-12">
+          <div class="text-gray-500">
+            <svg class="w-24 h-24 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/>
+            </svg>
+            <p class="text-xl font-semibold">Belum ada data denah tersedia</p>
+            <p class="text-gray-400 mt-2">Silakan hubungi kami untuk informasi lebih lanjut</p>
+          </div>
+        </div>
+      @endforelse
+    </div>
+  </div>
+</section>
+
+
+
 
 
     <!-- Image Carousel Section -->
@@ -459,408 +555,416 @@ document.addEventListener("DOMContentLoaded", () => {
 
     <!-- Projects Section -->
     <section id="projects" class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 fade-in">
-          <h2 class="text-4xl font-bold text-green-primary mb-4">
-            Tipe Rumah
-          </h2>
-          <p class="text-xl text-gray-600">
-            Pilihan tipe rumah sesuai kebutuhan keluarga Anda
-          </p>
-        </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-green-primary mb-4">Tipe Rumah</h2>
+      <p class="text-xl text-gray-600">
+        Pilihan tipe rumah sesuai kebutuhan keluarga Anda
+      </p>
+    </div>
 
-        <div class="max-w-6xl mx-auto">
-    <!-- House Types Grid -->
-    @forelse($houseTypes as $houseType)
-    <div
-        class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in mb-8"
-    >
-        <div class="h-64 relative overflow-hidden">
-            @if($houseType->image)
+    <!-- Grid 3 Kolom -->
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @forelse($houseTypes as $houseType)
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+            
+            <!-- Gambar (klik untuk lihat detail) -->
+            <button 
+              onclick="openHouseModal('{{ $houseType->id }}')" 
+              class="h-64 w-full relative overflow-hidden focus:outline-none"
+            >
+              @if($houseType->image)
                 <img
-                    src="{{ asset('storage/' . $houseType->image) }}"
-                    alt="{{ $houseType->name }}"
-                    class="w-full h-full object-cover"
+                  src="{{ asset('storage/' . $houseType->image) }}"
+                  alt="{{ $houseType->name }}"
+                  class="w-full h-full object-cover"
                 />
-            @else
-                <div class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center">
-                    <div class="text-center text-white">
-                        <svg class="w-24 h-24 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
-                        </svg>
-                        <p class="text-3xl font-bold">{{ $houseType->name }}</p>
-                    </div>
+              @else
+                <div
+                  class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center"
+                >
+                  <div class="text-center text-white">
+                    <svg
+                      class="w-24 h-24 mx-auto mb-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
+                      />
+                    </svg>
+                  </div>
                 </div>
-            @endif
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <div class="text-center text-white">
-                    <p class="text-3xl font-bold">{{ $houseType->name }}</p>
-                </div>
-            </div>
-        </div>
+              @endif
+            </button>
 
-        <div class="p-8">
-            <h3 class="text-2xl font-semibold text-green-primary mb-4 text-center">
+            <!-- Konten -->
+            <div class="p-6">
+              <h3
+                class="text-2xl font-semibold text-green-primary mb-4 text-center"
+              >
                 {{ $houseType->name }}
-            </h3>
+              </h3>
 
-            @if($houseType->description)
+              @if($houseType->description)
                 <p class="text-gray-600 text-center mb-6">
-                    {{ Str::limit($houseType->description, 150) }}
+                  {{ Str::limit($houseType->description, 150) }}
                 </p>
-            @endif
+              @endif
 
-            <div class="grid grid-cols-2 gap-4 mb-6">
+              <!-- Detail Rumah -->
+              <div class="grid grid-cols-2 gap-4 mb-6">
                 <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <p class="text-sm text-gray-600 mb-1">Luas Tanah</p>
-                    <p class="text-xl font-bold text-green-primary">{{ $houseType->land_area }} m²</p>
+                  <p class="text-sm text-gray-600 mb-1">Luas Tanah</p>
+                  <p class="text-xl font-bold text-green-primary">
+                    {{ $houseType->land_area }} m²
+                  </p>
                 </div>
                 <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <p class="text-sm text-gray-600 mb-1">Luas Bangunan</p>
-                    <p class="text-xl font-bold text-green-primary">{{ $houseType->building_area }} m²</p>
+                  <p class="text-sm text-gray-600 mb-1">Luas Bangunan</p>
+                  <p class="text-xl font-bold text-green-primary">
+                    {{ $houseType->building_area }} m²
+                  </p>
                 </div>
                 <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <p class="text-sm text-gray-600 mb-1">Kamar Tidur</p>
-                    <p class="text-xl font-bold text-green-primary">{{ $houseType->bedrooms }}</p>
+                  <p class="text-sm text-gray-600 mb-1">Kamar Tidur</p>
+                  <p class="text-xl font-bold text-green-primary">
+                    {{ $houseType->bedrooms }}
+                  </p>
                 </div>
                 <div class="text-center p-4 bg-gray-50 rounded-lg">
-                    <p class="text-sm text-gray-600 mb-1">Kamar Mandi</p>
-                    <p class="text-xl font-bold text-green-primary">{{ $houseType->bathrooms }}</p>
+                  <p class="text-sm text-gray-600 mb-1">Kamar Mandi</p>
+                  <p class="text-xl font-bold text-green-primary">
+                    {{ $houseType->bathrooms }}
+                  </p>
                 </div>
-            </div>
+              </div>
 
-            @if($houseType->facilities && count($houseType->facilities) > 0)
-            <div class="mb-6">
-                <h4 class="font-semibold text-green-primary mb-3">Fasilitas:</h4>
-                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+              <!-- Fasilitas -->
+              @if($houseType->facilities && count($houseType->facilities) > 0)
+                <div class="mb-6">
+                  <h4 class="font-semibold text-green-primary mb-3">Fasilitas:</h4>
+                  <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
                     @foreach($houseType->facilities as $facility)
-                        <div class="flex items-center">
-                            <span class="w-2 h-2 bg-green-primary rounded-full mr-2"></span>
-                            {{ $facility }}
-                        </div>
+                      <div class="flex items-center">
+                        <span class="w-2 h-2 bg-green-primary rounded-full mr-2"></span>
+                        {{ $facility }}
+                      </div>
                     @endforeach
+                  </div>
                 </div>
-            </div>
-            @endif
+              @endif
 
-            <div class="text-center mb-6">
+              <!-- Harga -->
+              <div class="text-center mb-6">
                 <p class="text-sm text-gray-500">Harga mulai dari</p>
                 <p class="text-3xl font-bold text-green-primary">
-                    Rp {{ number_format($houseType->price, 0, ',', '.') }} Juta
+                  Rp {{ number_format($houseType->price, 0, ',', '.') }} Juta
                 </p>
                 @if($houseType->installment_note)
-                    <p class="text-xs text-green-secondary mt-1">{{ $houseType->installment_note }}</p>
-                    <button
-                  onclick="document.getElementById('cicilanModal').classList.remove('hidden')"
-                  class="text-[11px] text-gray-600 bg-gray-100 px-3 py-1 rounded mt-3 hover:text-green-primary hover:bg-gray-200 transition"
-                >
-                  📊 Lihat Detail Harga & Simulasi Cicilan
-                </button>
-              </div>
-
-              <!-- Modal Cicilan -->
-              <!-- Modal Cicilan -->
-              <div
-                id="cicilanModal"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-              >
-                <div
-                  class="bg-white w-[90%] max-w-md rounded-lg shadow-lg p-6 text-sm"
-                >
-                  <h3 class="text-lg font-bold text-green-primary mb-3">
-                    Detail Harga & Cicilan
-                  </h3>
-
-                  <p class="mb-2">
-                    <span class="font-semibold">Harga Rumah:</span> Rp
-                    395.000.000
+                  <p class="text-xs text-green-secondary mt-1">
+                    {{ $houseType->installment_note }}
                   </p>
-                  <p class="mb-4">
-                    <span class="font-semibold">Uang Muka (DP):</span> Rp
-                    50.000.000
-                  </p>
-
-                  <h4 class="font-semibold mb-2">Simulasi Cicilan:</h4>
-                  <ul class="list-disc pl-5 text-gray-600 mb-4">
-                    <li>Tenor 10 Tahun: Rp 3,9 Juta/bulan</li>
-                    <li>Tenor 15 Tahun: Rp 2,7 Juta/bulan</li>
-                    <li>Tenor 20 Tahun: Rp 2,0 Juta/bulan</li>
-                  </ul>
-
-                  <p class="text-xs text-gray-400 italic mb-4">
-                    *Syarat & Ketentuan berlaku (harga dapat berubah
-                    sewaktu-waktu)
-                  </p>
-
                   <button
-                    onclick="document.getElementById('cicilanModal').classList.add('hidden')"
-                    class="bg-green-primary text-white px-4 py-2 rounded-lg hover:bg-green-secondary transition w-full"
+                    onclick="document.getElementById('cicilanModal').classList.remove('hidden')"
+                    class="text-[11px] text-gray-600 bg-gray-100 px-3 py-1 rounded mt-3 hover:text-green-primary hover:bg-gray-200 transition"
                   >
-                    Tutup
+                    📊 Lihat Detail Harga & Simulasi Cicilan
                   </button>
-                </div>
-              </div>
                 @endif
-            </div>
+              </div>
 
-            <!-- === Tombol di tengah === -->
-            <div class="flex justify-center gap-4">
+              <!-- Tombol -->
+              <div class="flex justify-center gap-4">
                 <button
-                    onclick="showInterest('{{ $houseType->name }}')"
-                    class="bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-colors"
+                  onclick="showInterest('{{ $houseType->name }}')"
+                  class="bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-colors"
                 >
-                    Konsultasi Gratis
+                  Konsultasi Gratis
                 </button>
                 <button
-                    onclick="openWhatsApp()"
-                    class="bg-green-accent text-green-primary py-3 px-6 rounded-lg font-semibold hover:bg-green-light transition-colors"
+                  onclick="openWhatsApp()"
+                  class="bg-green-accent text-green-primary py-3 px-6 rounded-lg font-semibold hover:bg-green-light transition-colors"
                 >
-                    Chat WhatsApp
+                  Chat WhatsApp
                 </button>
-            </div>
-            <!-- ======================== -->
-        </div>
-    </div>
-    @empty
-    <div class="text-center py-12">
-        <div class="text-gray-500">
-            <svg class="w-24 h-24 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
-            </svg>
-            <p class="text-xl font-semibold">Belum ada tipe rumah tersedia</p>
-            <p class="text-gray-400 mt-2">Silakan hubungi kami untuk informasi lebih lanjut</p>
-        </div>
-    </div>
-    @endforelse
-</div>
-
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16 fade-in">
-          <h2 class="text-4xl font-bold text-green-primary mb-4">
-            Hubungi Kami
-          </h2>
-          <p class="text-xl text-gray-600">
-            Siap membantu mewujudkan hunian impian Anda
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12">
-         <div class="fade-in">
-            <h3 class="text-2xl font-semibold text-green-primary mb-6">
-              Informasi Kontak
-            </h3>
-            <div class="space-y-6">
-              <!-- Alamat -->
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6 text-green-primary"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-green-primary">Alamat</h4>
-                  <a
-                    href="https://maps.app.goo.gl/NJwqT2buMYe9iv8x8"
-                    target="_blank"
-                    class="text-gray-600 hover:text-green-primary transition-colors"
-                  >
-                    Jl. Pahlawan no. A4 1 JAWA BARAT, <br />KAB BANDUNG,
-                    Banjaran, Kiangroke
-                  </a>
-                </div>
-              </div>
-
-              <!-- Telepon -->
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6 text-green-primary"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-green-primary">Telepon</h4>
-                  <a
-                    href="tel:+62813131348771"
-                    class="block text-gray-600 hover:text-green-primary transition-colors"
-                  >
-                    +62 813 1313 48771
-                  </a>
-
-                  <a
-                    href="tel:+6281234567890"
-                    class="block text-gray-600 hover:text-green-primary transition-colors"
-                  >
-                    +62 812 3456 7890
-                  </a>
-                </div>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6 text-green-primary"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                    />
-                    <path
-                      d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-green-primary">Email</h4>
-                  <a
-                    href="mailto:marketing@kreasiprimaland.com?subject=Info%20Pesona%20Prima%208"
-                    class="block text-gray-600 hover:text-green-primary transition-colors"
-                  >
-                    marketing@kreasiprimaland.com
-                  </a>
-                  <a
-                    href="mailto:sales@kreasiprimaland.com?subject=Info%20Pesona%20Prima%208"
-                    class="block text-gray-600 hover:text-green-primary transition-colors"
-                  >
-                    sales@kreasiprimaland.com
-                  </a>
-                </div>
-              </div>
-
-              <!-- Jam Operasional -->
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
-                >
-                  <svg
-                    class="w-6 h-6 text-green-primary"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-semibold text-green-primary">
-                    Jam Operasional
-                  </h4>
-                  <p class="text-gray-600">
-                    Senin - Jumat: 08:00 - 17:00 <br />
-                    Sabtu - Minggu: 09:00 - 16:00
-                  </p>
-                </div>
               </div>
             </div>
           </div>
+        @empty
+          <div class="col-span-3 text-center py-12">
+            <div class="text-gray-500">
+              <svg
+                class="w-24 h-24 mx-auto mb-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
+                />
+              </svg>
+              <p class="text-xl font-semibold">Belum ada tipe rumah tersedia</p>
+              <p class="text-gray-400 mt-2">
+                Silakan hubungi kami untuk informasi lebih lanjut
+              </p>
+            </div>
+          </div>
+        @endforelse
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div class="fade-in">
-    <form action="{{ route('input_pesan') }}" method="POST" class="space-y-6">
+
+
+    <!-- Contact Section -->
+   <section id="contact" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Title -->
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-green-primary mb-4">Hubungi Kami</h2>
+      <p class="text-xl text-gray-600">
+        Siap membantu mewujudkan hunian impian Anda
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Informasi Kontak -->
+      <div class="fade-in">
+        <h3 class="text-2xl font-semibold text-green-primary mb-6">
+          Informasi Kontak
+        </h3>
+
+        <div class="space-y-6">
+          <!-- Alamat -->
+          <div class="flex items-start space-x-4">
+            <div
+              class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-6 h-6 text-green-primary"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-green-primary">Alamat</h4>
+              <a
+                href="https://maps.app.goo.gl/NJwqT2buMYe9iv8x8"
+                target="_blank"
+                class="text-gray-600 hover:text-green-primary transition-colors"
+              >
+                Jl. Pahlawan no. A4 1 JAWA BARAT, <br />KAB BANDUNG,
+                Banjaran, Kiangroke
+              </a>
+            </div>
+          </div>
+
+          <!-- Telepon -->
+          <div class="flex items-start space-x-4">
+            <div
+              class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-6 h-6 text-green-primary"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-green-primary">Telepon</h4>
+              <a
+                href="tel:+62813131348771"
+                class="block text-gray-600 hover:text-green-primary transition-colors"
+              >
+                +62 813 1313 48771
+              </a>
+              <a
+                href="tel:+6281234567890"
+                class="block text-gray-600 hover:text-green-primary transition-colors"
+              >
+                +62 812 3456 7890
+              </a>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-start space-x-4">
+            <div
+              class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-6 h-6 text-green-primary"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                />
+                <path
+                  d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-green-primary">Email</h4>
+              <a
+                href="mailto:marketing@kreasiprimaland.com?subject=Info%20Pesona%20Prima%208"
+                class="block text-gray-600 hover:text-green-primary transition-colors"
+              >
+                marketing@kreasiprimaland.com
+              </a>
+              <a
+                href="mailto:sales@kreasiprimaland.com?subject=Info%20Pesona%20Prima%208"
+                class="block text-gray-600 hover:text-green-primary transition-colors"
+              >
+                sales@kreasiprimaland.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Jam Operasional -->
+          <div class="flex items-start space-x-4">
+            <div
+              class="w-12 h-12 bg-green-light rounded-full flex items-center justify-center flex-shrink-0"
+            >
+              <svg
+                class="w-6 h-6 text-green-primary"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-green-primary">
+                Jam Operasional
+              </h4>
+              <p class="text-gray-600">
+                Senin - Jumat: 08:00 - 17:00 <br />
+                Sabtu - Minggu: 09:00 - 16:00
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maps di bawah kontak -->
+        <div class="mt-8">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3959.6118947921254!2d107.5644515!3d-7.0548067!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68edbf40161b1b%3A0x1de4e38113ffd244!2sPesona%20Prima%208%20Banjaran!5e0!3m2!1sid!2sid!4v1758092844127!5m2!1sid!2sid"
+            width="100%" height="250" style="border:0;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="rounded-xl shadow-md"
+          ></iframe>
+          
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="fade-in">
+  <form action="{{ route('input_pesan') }}" method="POST" class="space-y-6">
     @csrf
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-            Nama Lengkap
-        </label>
-        <input
-            type="text"
-            name="name"
-            required
-            placeholder="Masukkan nama lengkap Anda"
-            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
-        />
+      <label class="block text-sm font-medium text-gray-700 mb-2">
+        Nama Lengkap
+      </label>
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="Masukkan nama lengkap Anda"
+        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
+      />
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-            Email
-        </label>
-        <input
-            type="email"
-            name="email"
-            placeholder="Masukkan email aktif Anda"
-            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
-        />
+      <label class="block text-sm font-medium text-gray-700 mb-2">
+        Email
+      </label>
+      <input
+        type="email"
+        name="email"
+        placeholder="Masukkan email aktif Anda"
+        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
+      />
     </div>
 
     <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-            Nomor Telepon
-        </label>
-        <input
-            type="tel"
-            name="phone"
-            placeholder="Contoh: 081234567890"
-            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
-        />
+      <label class="block text-sm font-medium text-gray-700 mb-2">
+        Nomor Telepon
+      </label>
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Contoh: 081234567890"
+        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
+      />
     </div>
 
     <div>
-    <label class="block text-sm font-medium text-gray-700 mb-2">
+      <label class="block text-sm font-medium text-gray-700 mb-2">
         Kebutuhan Konsultasi
-    </label>
-    <select
+      </label>
+      <select
         name="kebutuhan"
         class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all appearance-none"
         required
-    >
+      >
         <option value="">Pilih Kebutuhan</option>
         <option value="Informasi GreenVilla Premium">Informasi GreenVilla Premium</option>
         <option value="Kunjungan Lokasi">Kunjungan Lokasi</option>
         <option value="Konsultasi KPR">Konsultasi KPR</option>
         <option value="Lainnya">Lainnya</option>
-    </select>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">
+        Pesan
+      </label>
+      <textarea
+        name="pesan"
+        rows="4"
+        required
+        placeholder="Tuliskan pertanyaan atau pesan Anda..."
+        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
+      ></textarea>
+    </div>
+
+    <!-- reCAPTCHA -->
+   
+
+    <button
+      type="submit"
+      class="w-full bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-all duration-300 transform hover:scale-105"
+    >
+      Kirim Pesan
+    </button>
+  </form>
 </div>
 
 
-    <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-            Pesan
-        </label>
-        <textarea
-            name="pesan"
-            rows="4"
-            required
-            placeholder="Tuliskan pertanyaan atau pesan Anda..."
-            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
-        ></textarea>
-    </div>
 
-    <button
-        type="submit"
-        class="w-full bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-all duration-300 transform hover:scale-105"
-    >
-        Kirim Pesan
-    </button>
-</form>
+    </div>
+  </div>
+</section>
+
 
           </div>
         </div>
@@ -1707,5 +1811,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })();
     </script>
+    
   </body>
 </html>

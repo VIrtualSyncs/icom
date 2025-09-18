@@ -53,6 +53,22 @@
               <span class="menu-title">Highlights</span>
             </a>
           </li>
+<li class="nav-item menu-items">
+    <a class="nav-link" href="{{ route('kebutuhan.index') }}">
+        <span class="menu-icon">
+            <i class="mdi mdi-star"></i>
+        </span>
+        <span class="menu-title">Kebutuhan</span>
+    </a>
+</li>
+<li class="nav-item menu-items">
+    <a class="nav-link" href="{{ route('denah.show', 1) }}">
+        <span class="menu-icon">
+            <i class="mdi mdi-map"></i>
+        </span>
+        <span class="menu-title">Denah</span>
+    </a>
+</li>
           <li class="nav-item menu-items">
           <a class="nav-link" href="{{ route('messages.index') }}">
               <span class="menu-icon">

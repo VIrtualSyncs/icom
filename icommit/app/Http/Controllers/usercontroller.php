@@ -7,6 +7,8 @@ use App\Models\Highlight;
 use App\Models\heroes;
 use App\Models\Facilities;
 use App\Models\HouseType;
+use App\Models\Kebutuhan;
+use App\Models\denah;
 class usercontroller extends Controller
 
 {
@@ -16,8 +18,10 @@ class usercontroller extends Controller
         $facilities  = facilities::all();
         $highlights = Highlight::all();
         $houseTypes = HouseType::all();
+        $kebutuhan = Kebutuhan::all();
+        $denah = denah::all();
 
-        return view('user.index', compact('heroes', 'facilities', 'highlights', 'houseTypes'));
+        return view('user.index', compact('heroes', 'facilities', 'highlights', 'houseTypes', 'kebutuhan', 'denah'));
     }
 
 

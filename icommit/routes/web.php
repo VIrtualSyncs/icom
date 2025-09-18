@@ -9,9 +9,14 @@ use App\Http\Controllers\HighlightController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\usercontroller;
 use App\Http\Controllers\HouseTypeController;
+use App\Http\Controllers\kebutuhancontroller;
+use App\Http\Controllers\DenahController;
 
 // Route::get('/', [DashboardController::class, 'master'])->name('master')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'viewdata'])->name('viewdata')->middleware('auth');
+
+// denah
+Route::resource('denah', DenahController::class)->middleware('auth');
 
 // Heroes routes
 Route::resource('heroes', HeroesController::class)->middleware('auth');
@@ -51,3 +56,9 @@ Route::get('/', [usercontroller::class, 'index_user'])->name('index.user');
 
 // house type
 Route::resource('house-types', HouseTypeController::class)->middleware('auth');
+
+// kebutuhan
+Route::resource('kebutuhan', kebutuhancontroller::class)->middleware('auth');
+
+// denah
+Route::resource('denah', DenahController::class)->middleware('auth');
