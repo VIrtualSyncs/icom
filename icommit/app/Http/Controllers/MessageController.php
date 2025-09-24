@@ -20,18 +20,55 @@ class MessageController extends Controller
         return $this->index();
     }
 
+    // 👉 tampilkan form (kalau punya halaman form khusus)
+    //    kalau form disisipkan di semua halaman, langkah ini boleh dilewati
+    public function create()
+    {
+        // buat soal aritmatika
+        $a = rand(1, 9);
+        $b = rand(1, 9);
+
+        // simpan hasil dan angka di session
+        session([
+            'captcha_result' => $a + $b,
+            'captcha_a'      => $a,
+            'captcha_b'      => $b,
+        ]);
+
+        // kirim variabel ke view (opsional, Blade juga bisa ambil dari session)
+        return view('contact.form', compact('a', 'b'));
+    }
+
     // Simpan pesan dari form
     public function input_messege(Request $request)
     {
-        
         $request->validate([
-    'name' => 'required|string|max:255',
-    'email' => 'nullable|email',
-    'phone' => 'nullable|string|max:20',
-    'kebutuhan' => 'required|in:Informasi GreenVilla Premium,Kunjungan Lokasi,Konsultasi KPR,Lainnya',
-    'pesan' => 'required|string',
-]);
+            'name'      => 'required|string|max:255',
+            'email'     => 'nullable|email',
+            'phone'     => 'nullable|string|max:20',
+            'kebutuhan' => 'required|in:Informasi Pesona Prima 8,Kunjungan Lokasi,Konsultasi KPR,Lainnya',
+            'pesan'     => 'required|string',
+            'captcha'   => 'required|numeric', // ✅ validasi captcha
+        ]);
 
+        // ✅ cek jawaban captcha dari session
+        if ((int)$request->captcha !== (int)session('captcha_result')) {
+            // regenerate soal baru supaya tidak bisa brute force
+            $newA = rand(1, 9);
+            $newB = rand(1, 9);
+            session([
+                'captcha_result' => $newA + $newB,
+                'captcha_a'      => $newA,
+                'captcha_b'      => $newB,
+            ]);
+
+            return back()
+                ->withInput()
+                ->withErrors(['captcha' => 'Jawaban captcha salah, silakan coba lagi.']);
+        }
+
+        // hapus captcha setelah dipakai
+        session()->forget(['captcha_result','captcha_a','captcha_b']);
 
         Message::create($request->only('name', 'email', 'phone', 'kebutuhan', 'pesan'));
 

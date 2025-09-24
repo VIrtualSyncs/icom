@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('slug')->unique();           // slug untuk URL
             $table->text('description')->nullable();    // deskripsi
             $table->string('image')->nullable();        // path foto
+            $table->string('top_view')->nullable();     // path top
+            $table->string('back_view')->nullable();    // path back
             $table->unsignedInteger('land_area');       // luas tanah m²
             $table->unsignedInteger('building_area');   // luas bangunan m²
             $table->tinyInteger('bedrooms');            // jumlah kamar tidur

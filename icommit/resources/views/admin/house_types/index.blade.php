@@ -29,6 +29,8 @@
                         <tr>
                             <th>#</th>
                             <th>Image</th>
+                            <th>Top View</th>
+                            <th>Back View</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Land Area</th>
@@ -48,6 +50,26 @@
                                     @if($house->image)
                                         <img src="{{ asset('storage/' . $house->image) }}"
                                              alt="{{ $house->name }}"
+                                             class="img-fluid"
+                                             style="max-width: 80px; max-height: 60px;">
+                                    @else
+                                        <span class="text-muted">No image</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($house->top_view)
+                                        <img src="{{ asset('storage/' . $house->top_view) }}"
+                                             alt="{{ $house->name }} - Top View"
+                                             class="img-fluid"
+                                             style="max-width: 80px; max-height: 60px;">
+                                    @else
+                                        <span class="text-muted">No image</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($house->back_view)
+                                        <img src="{{ asset('storage/' . $house->back_view) }}"
+                                             alt="{{ $house->name }} - Back View"
                                              class="img-fluid"
                                              style="max-width: 80px; max-height: 60px;">
                                     @else
@@ -88,7 +110,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="11" class="text-center">No house types found</td>
+                                <td colspan="13" class="text-center">No house types found</td>
                             </tr>
                         @endforelse
                     </tbody>

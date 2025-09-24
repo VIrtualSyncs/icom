@@ -25,6 +25,8 @@ class HouseTypeController extends Controller
             'name'=>'required|string|max:150',
             'description'=>'nullable|string',
             'image'=>'nullable|image',
+            'top_view'=>'nullable|image',
+            'back_view'=>'nullable|image',
             'land_area'=>'required|numeric',
             'building_area'=>'required|numeric',
             'bedrooms'=>'required|integer',
@@ -38,6 +40,14 @@ class HouseTypeController extends Controller
 
         if($request->hasFile('image')){
             $data['image'] = $request->file('image')->store('houses','public');
+        }
+
+        if($request->hasFile('top_view')){
+            $data['top_view'] = $request->file('top_view')->store('houses','public');
+        }
+
+        if($request->hasFile('back_view')){
+            $data['back_view'] = $request->file('back_view')->store('houses','public');
         }
 
         HouseType::create($data);
@@ -60,6 +70,8 @@ class HouseTypeController extends Controller
             'name'=>'required|string|max:150',
             'description'=>'nullable|string',
             'image'=>'nullable|image',
+            'top_view'=>'nullable|image',
+            'back_view'=>'nullable|image',
             'land_area'=>'required|numeric',
             'building_area'=>'required|numeric',
             'bedrooms'=>'required|integer',
@@ -73,6 +85,14 @@ class HouseTypeController extends Controller
 
         if($request->hasFile('image')){
             $data['image'] = $request->file('image')->store('houses','public');
+        }
+
+        if($request->hasFile('top_view')){
+            $data['top_view'] = $request->file('top_view')->store('houses','public');
+        }
+
+        if($request->hasFile('back_view')){
+            $data['back_view'] = $request->file('back_view')->store('houses','public');
         }
 
         $houseType->update($data);

@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesona Prima 8 - Hunian Elegan & Modern</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -89,111 +92,60 @@
   <body class="bg-white">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-  <a href="#home">
-    <img 
-      src="{{ asset('images/logo_pesona_prima.png') }}" 
-      alt="Logo Pesona Prima 8 Banjaran" 
-      class="h-12 w-auto"
-    >
-  </a>
-</div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      {{-- Logo + Title --}}
+      <div class="flex items-center space-x-3">
+        <a href="#home" class="flex items-center space-x-3">
+          <img
+            src="{{ asset('images/logo_pesona_prima.png') }}"
+            alt="Logo Pesona Prima 8 Banjaran"
+            class="h-12 w-auto"
+          >
+          <!-- ✨ Title di samping kanan logo -->
+          <span class="text-lg sm:text-xl font-bold text-gray-800 whitespace-nowrap">
+            Pesona Prima 8
+          </span>
+        </a>
+      </div>
 
-
-          </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-8">
-              <a
-                href="#home"
-                class="text-green-primary hover:text-green-secondary px-3 py-2 text-sm font-medium transition-colors"
-                >Beranda</a
-              >
-              <a
-                href="#about"
-                class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
-                >Tentang</a
-              >
-              <a href="#denah"
-   class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">
-   Denah
-</a>
-
-              <a
-                href="#gallery"
-                class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
-                >Fasilitas</a
-              >
-              <a
-                href="#projects"
-                class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
-                >Tipe unit</a
-              >
-              <a
-                href="#contact"
-                class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors"
-                >Kontak</a
-              >
-            </div>
-          </div>
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-btn"
-              class="text-green-primary hover:text-green-secondary"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
+      {{-- Menu desktop --}}
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          <a href="#home" class="text-green-primary hover:text-green-secondary px-3 py-2 text-sm font-medium transition-colors">Beranda</a>
+          <a href="#about" class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">Tentang</a>
+          <a href="#denah" class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">Denah</a>
+          <a href="#gallery" class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">Fasilitas</a>
+          <a href="#projects" class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">Tipe Unit</a>
+          <a href="#contact" class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">Kontak</a>
         </div>
       </div>
-      <!-- Mobile menu -->
-      <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="#home" class="block px-3 py-2 text-green-primary font-medium"
-            >Beranda</a
-          >
-          <a
-            href="#about"
-            class="block px-3 py-2 text-gray-700 hover:text-green-primary"
-            >Tentang</a
-          >
-          <a href="#denah"
-          class="text-gray-700 hover:text-green-primary px-3 py-2 text-sm font-medium transition-colors">
-             Denah
-          </a>
 
-          <a
-            href="#gallery"
-            class="block px-3 py-2 text-gray-700 hover:text-green-primary"
-            >Fasilitas</a
-          >
-          <a
-            href="#projects"
-            class="block px-3 py-2 text-gray-700 hover:text-green-primary"
-            >Tipe unit</a
-          >
-          <a
-            href="#contact"
-            class="block px-3 py-2 text-gray-700 hover:text-green-primary"
-            >Kontak</a
-          >
-        </div>
+      {{-- Tombol mobile --}}
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-green-primary hover:text-green-secondary">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
-    </nav>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <a href="#home" class="block px-3 py-2 text-green-primary font-medium">Beranda</a>
+      <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-green-primary">Tentang</a>
+      <a href="#denah" class="block px-3 py-2 text-gray-700 hover:text-green-primary">Denah</a>
+      <a href="#gallery" class="block px-3 py-2 text-gray-700 hover:text-green-primary">Fasilitas</a>
+      <a href="#projects" class="block px-3 py-2 text-gray-700 hover:text-green-primary">Tipe Unit</a>
+      <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-green-primary">Kontak</a>
+    </div>
+  </div>
+</nav>
+
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center" <section class="py-16 bg-white" onmouseenter="
@@ -500,7 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16 fade-in">
       <h2 class="text-4xl font-bold text-green-primary mb-4">
-        Galeri Proyek
+        Galeri Fasilitas
       </h2>
       <p class="text-xl text-gray-600">
         Lihat keindahan dan kemewahan hunian Pesona Prima 8 Residence
@@ -554,8 +506,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50">
+  <section id="projects" class="py-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Heading -->
     <div class="text-center mb-16 fade-in">
       <h2 class="text-4xl font-bold text-green-primary mb-4">Tipe Rumah</h2>
       <p class="text-xl text-gray-600">
@@ -563,158 +517,257 @@ document.addEventListener("DOMContentLoaded", () => {
       </p>
     </div>
 
-    <!-- Grid 3 Kolom -->
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @forelse($houseTypes as $houseType)
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in">
-            
-            <!-- Gambar (klik untuk lihat detail) -->
-            <button 
-              onclick="openHouseModal('{{ $houseType->id }}')" 
-              class="h-64 w-full relative overflow-hidden focus:outline-none"
-            >
-              @if($houseType->image)
-                <img
-                  src="{{ asset('storage/' . $houseType->image) }}"
-                  alt="{{ $houseType->name }}"
-                  class="w-full h-full object-cover"
-                />
-              @else
-                <div
-                  class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center"
-                >
-                  <div class="text-center text-white">
-                    <svg
-                      class="w-24 h-24 mx-auto mb-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              @endif
-            </button>
+    <!-- Grid: 1 kolom di mobile, 2 di md, 3 di lg -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @forelse($houseTypes as $houseType)
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in">
 
-            <!-- Konten -->
-            <div class="p-6">
-              <h3
-                class="text-2xl font-semibold text-green-primary mb-4 text-center"
-              >
-                {{ $houseType->name }}
-              </h3>
-
-              @if($houseType->description)
-                <p class="text-gray-600 text-center mb-6">
-                  {{ Str::limit($houseType->description, 150) }}
-                </p>
-              @endif
-
-              <!-- Detail Rumah -->
-              <div class="grid grid-cols-2 gap-4 mb-6">
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Luas Tanah</p>
-                  <p class="text-xl font-bold text-green-primary">
-                    {{ $houseType->land_area }} m²
-                  </p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Luas Bangunan</p>
-                  <p class="text-xl font-bold text-green-primary">
-                    {{ $houseType->building_area }} m²
-                  </p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Kamar Tidur</p>
-                  <p class="text-xl font-bold text-green-primary">
-                    {{ $houseType->bedrooms }}
-                  </p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <p class="text-sm text-gray-600 mb-1">Kamar Mandi</p>
-                  <p class="text-xl font-bold text-green-primary">
-                    {{ $houseType->bathrooms }}
-                  </p>
-                </div>
+          <!-- Gambar -->
+          <button
+            onclick="openHouseModal('{{ $houseType->id }}')"
+            class="h-64 w-full relative overflow-hidden focus:outline-none"
+          >
+            @if($houseType->image)
+              <img
+                src="{{ asset('storage/' . $houseType->image) }}"
+                alt="{{ $houseType->name }}"
+                class="w-full h-full object-cover"
+              />
+            @else
+              <div class="h-64 bg-gradient-to-br from-green-light to-green-secondary flex items-center justify-center text-white">
+                <svg class="w-24 h-24 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                </svg>
               </div>
+            @endif
+          </button>
 
-              <!-- Fasilitas -->
-              @if($houseType->facilities && count($houseType->facilities) > 0)
-                <div class="mb-6">
-                  <h4 class="font-semibold text-green-primary mb-3">Fasilitas:</h4>
-                  <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
-                    @foreach($houseType->facilities as $facility)
-                      <div class="flex items-center">
-                        <span class="w-2 h-2 bg-green-primary rounded-full mr-2"></span>
-                        {{ $facility }}
-                      </div>
-                    @endforeach
-                  </div>
-                </div>
-              @endif
+          <!-- Konten -->
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold text-green-primary mb-4 text-center">
+              {{ $houseType->name }}
+            </h3>
 
-              <!-- Harga -->
-              <div class="text-center mb-6">
-                <p class="text-sm text-gray-500">Harga mulai dari</p>
-                <p class="text-3xl font-bold text-green-primary">
-                  Rp {{ number_format($houseType->price, 0, ',', '.') }} Juta
-                </p>
-                @if($houseType->installment_note)
-                  <p class="text-xs text-green-secondary mt-1">
-                    {{ $houseType->installment_note }}
-                  </p>
-                  <button
-                    onclick="document.getElementById('cicilanModal').classList.remove('hidden')"
-                    class="text-[11px] text-gray-600 bg-gray-100 px-3 py-1 rounded mt-3 hover:text-green-primary hover:bg-gray-200 transition"
-                  >
-                    📊 Lihat Detail Harga & Simulasi Cicilan
-                  </button>
-                @endif
-              </div>
-
-              <!-- Tombol -->
-              <div class="flex justify-center gap-4">
-                <button
-                  onclick="showInterest('{{ $houseType->name }}')"
-                  class="bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-colors"
-                >
-                  Konsultasi Gratis
-                </button>
-                <button
-                  onclick="openWhatsApp()"
-                  class="bg-green-accent text-green-primary py-3 px-6 rounded-lg font-semibold hover:bg-green-light transition-colors"
-                >
-                  Chat WhatsApp
-                </button>
-              </div>
-            </div>
-          </div>
-        @empty
-          <div class="col-span-3 text-center py-12">
-            <div class="text-gray-500">
-              <svg
-                class="w-24 h-24 mx-auto mb-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"
-                />
-              </svg>
-              <p class="text-xl font-semibold">Belum ada tipe rumah tersedia</p>
-              <p class="text-gray-400 mt-2">
-                Silakan hubungi kami untuk informasi lebih lanjut
+            @if($houseType->description)
+              <p class="text-gray-600 text-center mb-6">
+                {{ Str::limit($houseType->description, 150) }}
               </p>
+            @endif
+
+            <!-- Detail Rumah -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="text-center p-4 bg-gray-50 rounded-lg">
+                <p class="text-sm text-gray-600 mb-1">Luas Tanah</p>
+                <p class="text-xl font-bold text-green-primary">{{ $houseType->land_area }} m²</p>
+              </div>
+              <div class="text-center p-4 bg-gray-50 rounded-lg">
+                <p class="text-sm text-gray-600 mb-1">Luas Bangunan</p>
+                <p class="text-xl font-bold text-green-primary">{{ $houseType->building_area }} m²</p>
+              </div>
+              <div class="text-center p-4 bg-gray-50 rounded-lg">
+                <p class="text-sm text-gray-600 mb-1">Kamar Tidur</p>
+                <p class="text-xl font-bold text-green-primary">{{ $houseType->bedrooms }}</p>
+              </div>
+              <div class="text-center p-4 bg-gray-50 rounded-lg">
+                <p class="text-sm text-gray-600 mb-1">Kamar Mandi</p>
+                <p class="text-xl font-bold text-green-primary">{{ $houseType->bathrooms }}</p>
+              </div>
+            </div>
+
+            <!-- Fasilitas -->
+            @if($houseType->facilities && count($houseType->facilities) > 0)
+              <div class="mb-6">
+                <h4 class="font-semibold text-green-primary mb-3">Fasilitas:</h4>
+                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                  @foreach($houseType->facilities as $facility)
+                    <div class="flex items-center">
+                      <span class="w-2 h-2 bg-green-primary rounded-full mr-2"></span>
+                      {{ $facility }}
+                    </div>
+                  @endforeach
+                </div>
+              </div>
+            @endif
+
+            <!-- Harga -->
+            <div class="text-center mb-6">
+              <p class="text-sm text-gray-500">Harga mulai dari</p>
+              <p class="text-3xl font-bold text-green-primary">
+                Rp {{ number_format($houseType->price, 0, ',', '.') }} Juta
+              </p>
+
+              @if($houseType->installment_note)
+                <p class="text-xs text-green-secondary mt-1">{{ $houseType->installment_note }}</p>
+                <button
+                  onclick="openCicilanModal('{{ $houseType->price }}')"
+                  class="text-[11px] text-gray-600 bg-gray-100 px-3 py-1 rounded mt-3 hover:text-green-primary hover:bg-gray-200 transition"
+                >
+                  📊 Lihat Detail Harga & Simulasi Cicilan
+                </button>
+              @endif
+            </div>
+
+            <!-- Tombol -->
+            <div class="flex justify-center gap-4">
+              <button
+                onclick="openHouseModal('{{ $houseType->id }}')"
+                class="bg-green-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-secondary transition-colors"
+              >
+                Detail Rumah
+              </button>
+              <button
+                onclick="openWhatsApp()"
+                class="bg-green-accent text-green-primary py-3 px-6 rounded-lg font-semibold hover:bg-green-light transition-colors"
+              >
+                Chat WhatsApp
+              </button>
             </div>
           </div>
-        @endforelse
-      </div>
+        </div>
+      @empty
+        <div class="col-span-3 text-center py-12">
+          <p class="text-gray-500">Belum ada tipe rumah tersedia</p>
+        </div>
+      @endforelse
     </div>
   </div>
 </section>
+
+
+<!-- ===== Modal Simulasi Cicilan ===== -->
+<div id="cicilanModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+  <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 relative">
+    <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onclick="closeCicilanModal()">✕</button>
+    <h3 class="text-2xl font-bold text-green-primary mb-4 text-center">Simulasi Cicilan</h3>
+    <div id="simulasi-content" class="space-y-4 text-gray-700 text-center"></div>
+  </div>
+</div>
+
+<script>
+function openCicilanModal(price) {
+  const modal = document.getElementById('cicilanModal');
+  const content = document.getElementById('simulasi-content');
+  const harga = parseFloat(price) * 1_000_000; // dari Juta ke Rupiah
+
+  const options = [10, 15, 20]; // tahun
+  let html = '';
+  options.forEach(tahun => {
+    const totalBulan = tahun * 12;
+    const cicilan = Math.round(harga / totalBulan);
+    html += `
+      <div class="border rounded-lg p-4">
+        <p class="font-semibold text-green-primary">${tahun} Tahun</p>
+        <p class="text-lg font-bold">Rp ${cicilan.toLocaleString('id-ID')} / bulan</p>
+      </div>
+    `;
+  });
+  content.innerHTML = html;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+function closeCicilanModal() {
+  const modal = document.getElementById('cicilanModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+</script>
+
+
+
+<!-- === Modal Detail Rumah (slider gambar depan, belakang, atas) === -->
+@foreach($houseTypes as $houseType)
+<div id="houseModal-{{ $houseType->id }}"
+     class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+
+  <div class="bg-white w-[90%] max-w-3xl rounded-lg shadow-lg p-6 relative">
+    <!-- Tombol Close -->
+    <button onclick="closeHouseModal('{{ $houseType->id }}')"
+            class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+
+    <h3 class="text-lg font-bold text-green-primary mb-4">{{ $houseType->name }}</h3>
+
+    <!-- Carousel/Swiper -->
+    <div class="swiper carousel-swiper-{{ $houseType->id }}">
+      <div class="swiper-wrapper">
+        @if($houseType->image)
+          <div class="swiper-slide">
+            <div class="aspect-[4/3] w-full">
+              <img src="{{ asset('storage/' . $houseType->image) }}"
+                   class="w-full h-full object-cover rounded-lg"
+                   alt="Depan {{ $houseType->name }}">
+            </div>
+          </div>
+        @endif
+        @if($houseType->back_view)
+          <div class="swiper-slide">
+            <div class="aspect-[4/3] w-full">
+              <img src="{{ asset('storage/' . $houseType->back_view) }}"
+                   class="w-full h-full object-cover rounded-lg"
+                   alt="Belakang {{ $houseType->name }}">
+            </div>
+          </div>
+        @endif
+        @if($houseType->top_view)
+          <div class="swiper-slide">
+            <div class="aspect-[4/3] w-full">
+              <img src="{{ asset('storage/' . $houseType->top_view) }}"
+                   class="w-full h-full object-cover rounded-lg"
+                   alt="Atas {{ $houseType->name }}">
+            </div>
+          </div>
+        @endif
+      </div>
+
+      <!-- Navigasi -->
+      <div class="swiper-pagination mt-2"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
+
+
+
+<script>
+function openHouseModal(id) {
+  document.getElementById('houseModal-' + id).classList.remove('hidden');
+}
+function closeHouseModal(id) {
+  document.getElementById('houseModal-' + id).classList.add('hidden');
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Cari semua modal lalu buat carousel untuk masing-masing
+  document.querySelectorAll('[id^="houseModal-"]').forEach(function(modal) {
+    const swiperEl = modal.querySelector('.swiper');
+    const paginationEl = modal.querySelector('.swiper-pagination');
+    const nextEl = modal.querySelector('.swiper-button-next');
+    const prevEl = modal.querySelector('.swiper-button-prev');
+
+    new Swiper(swiperEl, {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: paginationEl,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: nextEl,
+        prevEl: prevEl,
+      },
+    });
+  });
+});
+</script>
+
+
+
 
 
 
@@ -927,7 +980,7 @@ document.addEventListener("DOMContentLoaded", () => {
         required
       >
         <option value="">Pilih Kebutuhan</option>
-        <option value="Informasi GreenVilla Premium">Informasi GreenVilla Premium</option>
+        <option value="Informasi Pesona Prima 8">Informasi Pesona Prima 8</option>
         <option value="Kunjungan Lokasi">Kunjungan Lokasi</option>
         <option value="Konsultasi KPR">Konsultasi KPR</option>
         <option value="Lainnya">Lainnya</option>
@@ -948,7 +1001,41 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 
     <!-- reCAPTCHA -->
-   
+   @php
+    $captchaA = session('captcha_a');
+    $captchaB = session('captcha_b');
+
+    // Jika tidak lewat method create(), generate di sini
+    if (is_null($captchaA) || is_null($captchaB)) {
+        $captchaA = rand(1,9);
+        $captchaB = rand(1,9);
+        session([
+            'captcha_result' => $captchaA + $captchaB,
+            'captcha_a'      => $captchaA,
+            'captcha_b'      => $captchaB,
+        ]);
+    }
+@endphp
+
+<div>
+  <label class="block text-sm font-medium text-gray-700 mb-2">
+    Verifikasi: Berapa <strong>{{ $captchaA }}</strong> + <strong>{{ $captchaB }}</strong> ?
+  </label>
+
+  <input
+    type="number"
+    name="captcha"
+    required
+    min="0"
+    placeholder="Masukkan jawaban"
+    class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-primary focus:border-green-primary transition-all"
+  />
+
+  @error('captcha')
+    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+  @enderror
+</div>
+
 
     <button
       type="submit"
@@ -1314,16 +1401,23 @@ document.addEventListener("DOMContentLoaded", () => {
               </li>
               <li>
                 <a
+                  href="#denah"
+                  class="text-green-accent hover:text-white transition-colors"
+                  >Denah</a
+                >
+              </li>
+              <li>
+                <a
                   href="#gallery"
                   class="text-green-accent hover:text-white transition-colors"
-                  >Galeri</a
+                  >Fasilitas</a
                 >
               </li>
               <li>
                 <a
                   href="#projects"
                   class="text-green-accent hover:text-white transition-colors"
-                  >Proyek</a
+                  >Tipe Unit</a
                 >
               </li>
             </ul>
@@ -1483,10 +1577,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // WhatsApp function
       function openWhatsApp() {
-        const phoneNumber = "6281313134877"; // Ganti dengan nomor WhatsApp yang sebenarnya
+        const phoneNumber = "628979521900"; // Ganti dengan nomor WhatsApp yang sebenarnya
         const message = encodeURIComponent(
-          "Halo! Saya tertarik dengan GreenVilla Premium. Bisa minta informasi lebih lanjut?"
-        );
+`Halo Agen PT. Pesona Prima,
+
+Perkenalkan, saya [Nama Anda]. 
+Saya tertarik untuk mendapatkan informasi lebih lanjut mengenai properti PT. Pesona Prima.
+
+Berikut detail saya:
+Nama          : [Nama Lengkap]
+Alamat        : [Alamat Domisili]
+No. Telepon   : [Nomor yang dapat dihubungi]
+Konsultasi    : [Tuliskan pertanyaan atau kebutuhan, misal: "informasi tipe rumah dan skema pembiayaan"]
+
+Terima kasih atas bantuannya.
+Saya menantikan informasi lebih lanjut dari Anda.
+`
+);
+
         const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(whatsappURL, "_blank");
       }

@@ -16,7 +16,7 @@
                 @method('PUT')
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="name">Name *</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $houseType->name) }}" required>
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
@@ -35,6 +35,35 @@
                             @if($houseType->image)
                                 <small class="form-text text-muted">Leave empty to keep current image</small>
                                 <img src="{{ asset('storage/' . $houseType->image) }}" alt="{{ $houseType->name }}" class="img-fluid mt-2" style="max-width: 200px;">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="top_view">Top View Image</label>
+                            <input type="file" class="form-control @error('top_view') is-invalid @enderror" id="top_view" name="top_view" accept="image/*">
+                            @error('top_view')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            @if($houseType->top_view)
+                                <small class="form-text text-muted">Leave empty to keep current image</small>
+                                <img src="{{ asset('storage/' . $houseType->top_view) }}" alt="{{ $houseType->name }} - Top View" class="img-fluid mt-2" style="max-width: 200px;">
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="back_view">Back View Image</label>
+                            <input type="file" class="form-control @error('back_view') is-invalid @enderror" id="back_view" name="back_view" accept="image/*">
+                            @error('back_view')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            @if($houseType->back_view)
+                                <small class="form-text text-muted">Leave empty to keep current image</small>
+                                <img src="{{ asset('storage/' . $houseType->back_view) }}" alt="{{ $houseType->name }} - Back View" class="img-fluid mt-2" style="max-width: 200px;">
                             @endif
                         </div>
                     </div>

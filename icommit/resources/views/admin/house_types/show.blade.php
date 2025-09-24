@@ -47,17 +47,41 @@
                 </div>
             </div>
 
-            @if($houseType->image)
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label><strong>Image:</strong></label>
                         <br>
-                        <img src="{{ asset('storage/' . $houseType->image) }}" alt="{{ $houseType->name }}" class="img-fluid" style="max-width: 300px;">
+                        @if($houseType->image)
+                            <img src="{{ asset('storage/' . $houseType->image) }}" alt="{{ $houseType->name }}" class="img-fluid" style="max-width: 300px;">
+                        @else
+                            <span class="text-muted">No image</span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label><strong>Top View:</strong></label>
+                        <br>
+                        @if($houseType->top_view)
+                            <img src="{{ asset('storage/' . $houseType->top_view) }}" alt="{{ $houseType->name }} - Top View" class="img-fluid" style="max-width: 300px;">
+                        @else
+                            <span class="text-muted">No top view image</span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label><strong>Back View:</strong></label>
+                        <br>
+                        @if($houseType->back_view)
+                            <img src="{{ asset('storage/' . $houseType->back_view) }}" alt="{{ $houseType->name }} - Back View" class="img-fluid" style="max-width: 300px;">
+                        @else
+                            <span class="text-muted">No back view image</span>
+                        @endif
                     </div>
                 </div>
             </div>
-            @endif
 
             <div class="row">
                 <div class="col-md-3">

@@ -7,22 +7,20 @@ use Illuminate\Http\Request;
 
 class KebutuhanController extends Controller
 {
-public function index()
-{
-    // pakai paginate kalau mau ->firstItem() dan ->links()
-    $kebutuhan = Kebutuhan::paginate(10);
+    public function index()
+    {
+        // pakai paginate kalau mau ->firstItem() dan ->links()
+        $kebutuhan = Kebutuhan::paginate(10);
 
-    return view('admin.kebutuhan.index', compact('kebutuhan'));
-}
-
-
+        return view('admin.kebutuhan.index', compact('kebutuhan'));
+    }
 
     public function create()
     {
         return view('admin.kebutuhan.create');
     }
 
-public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'title' => 'required',
@@ -52,7 +50,7 @@ public function store(Request $request)
         return view('admin.kebutuhan.edit', compact('kebutuhan'));
     }
 
-public function update(Request $request, Kebutuhan $kebutuhan)
+    public function update(Request $request, Kebutuhan $kebutuhan)
     {
         $request->validate([
             'title' => 'required',
@@ -80,7 +78,7 @@ public function update(Request $request, Kebutuhan $kebutuhan)
             ->with('success','Data kebutuhan berhasil diupdate.');
     }
 
-public function destroy(Kebutuhan $kebutuhan)
+    public function destroy(Kebutuhan $kebutuhan)
     {
         // Delete icon file if exists and is a file path
         if ($kebutuhan->icon && \Illuminate\Support\Facades\Storage::disk('public')->exists($kebutuhan->icon)) {
@@ -93,9 +91,8 @@ public function destroy(Kebutuhan $kebutuhan)
     }
 
     public function show(Kebutuhan $kebutuhan)
-{
-    // kirim 1 data kebutuhan ke view show
-    return view('admin.kebutuhan.show', compact('kebutuhan'));
-}
-
+    {
+        // kirim 1 data kebutuhan ke view show
+        return view('admin.kebutuhan.show', compact('kebutuhan'));
+    }
 }

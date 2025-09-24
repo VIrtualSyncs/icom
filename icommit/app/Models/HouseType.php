@@ -8,8 +8,8 @@ class HouseType extends Model
 {
     protected $fillable = [
         'name','slug','description','image',
-        'land_area','building_area','bedrooms','bathrooms',
-        'price','installment_note','facilities'
+        'top_view','back_view','land_area','building_area',
+        'bedrooms','bathrooms','price','installment_note','facilities'
     ];
 
     protected $casts = [
